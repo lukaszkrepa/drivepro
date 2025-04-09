@@ -1,7 +1,6 @@
 import Head from 'next/head';
-// @ts-ignore
 import Header from '../components/Header';
-
+import Hero from '../components/Hero';
 export default function Home() {
   return (
       <>
@@ -12,7 +11,7 @@ export default function Home() {
         </Head>
 
         <Header />
-
+        <Hero />
         <main className="pt-20">
           {/* Your homepage content */}
           <section id="kursy">
