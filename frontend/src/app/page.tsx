@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
+import Courses from '../components/Courses';
 export default function Home() {
   return (
       <>
@@ -12,6 +13,7 @@ export default function Home() {
 
         <Header />
         <Hero />
+          <Courses />
         <main className="pt-20">
           {/* Your homepage content */}
           <section id="kursy">

@@ -20,13 +20,13 @@ export default function Hero() {
                             </a>
                         </div>
                     </div>
-                    <div className="hero-image">
-                        <img
-                            src="https://storage.googleapis.com/uxpilot-auth.appspot.com/be84c6def1-9e1c601e0dc097ad9451.png"
-                            alt="modern driving school car with instructor and student, professional photography"
-                            className="image"
-                        />
-                    </div>
+                    {/*<div className="hero-image">*/}
+                    {/*    <img*/}
+                    {/*        src="https://storage.googleapis.com/uxpilot-auth.appspot.com/be84c6def1-9e1c601e0dc097ad9451.png"*/}
+                    {/*        alt="modern driving school car with instructor and student, professional photography"*/}
+                    {/*        className="image"*/}
+                    {/*    />*/}
+                    {/*</div>*/}
                 </div>
             </div>
         </section>

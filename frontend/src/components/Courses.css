@@ -1,0 +1,80 @@
+.kursy-section {
+    padding: 5rem 0;
+    background-color: #f9fafb; /* gray-50 */
+}
+
+.kursy-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.kursy-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #0a0a0a;
+}
+
+.kursy-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .kursy-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.course-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+.course-icon {
+    font-size: 2.5rem;
+    color: #2563eb;
+    margin-bottom: 1rem;
+}
+
+.course-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #0a0a0a;
+}
+
+.course-details {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    color: gray;
+    flex-grow: 1;
+}
+
+.course-details li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.course-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2563eb;
+    align-self: flex-start;
+    margin-top: auto;
+}
