@@ -3,11 +3,12 @@ import {
     faPhone,
     faEnvelope,
     faLocationDot,
+} from '@fortawesome/free-solid-svg-icons';
+import {
     faFacebook,
     faTiktok,
     faInstagram,
-} from '@fortawesome/free-solid-svg-icons';
-
+} from '@fortawesome/free-brands-svg-icons';
 function Footer() {
     return (
         <footer className="bg-gray-900 text-white py-12">
