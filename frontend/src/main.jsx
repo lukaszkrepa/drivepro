@@ -7,6 +7,7 @@ import Courses from "./components/Courses.jsx";
 import SignupSteps from "./components/SignupSteps.jsx";
 import TeamAndCars from "./components/TeamAndCars.jsx";
 import Gallery from "./components/Gallery.jsx";
+import Reviews from "./components/Reviews.jsx";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,5 +17,6 @@ createRoot(document.getElementById('root')).render(
       <SignupSteps/>
       <TeamAndCars/>
         <Gallery/>
+      <Reviews/>
   </StrictMode>,
 )
