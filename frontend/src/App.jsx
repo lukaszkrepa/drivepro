@@ -4,6 +4,7 @@ import Footer from './components/Footer.jsx';
 import Home from './pages/Home/Home.jsx';
 import Gallery from './pages/Gallery/Gallery.jsx';
 import Testimonial from "./pages/Testimonial/Testimonial.jsx";
+import InstructorsAndCars from "./pages/InstructorsAndCars/InstructorsAndCars.jsx";
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/reviews" element={<Testimonial />} />
+                <Route path="/instructors" element={<InstructorsAndCars />} />
             </Routes>
             <Footer />
         </Router>

@@ -43,7 +43,7 @@ function Header() {
                         <a href="#zapisy" className="text-gray-700 hover:text-blue-600">
                             Jak się zapisać
                         </a>
-                        <a href="#kadra" className="text-gray-700 hover:text-blue-600">
+                        <a href="/instructors" className="text-gray-700 hover:text-blue-600">
                             Kadra i Samochody
                         </a>
                         <a href="/gallery" className="text-gray-700 hover:text-blue-600">
