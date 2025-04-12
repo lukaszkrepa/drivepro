@@ -46,7 +46,7 @@ function Header() {
                         <a href="#kadra" className="text-gray-700 hover:text-blue-600">
                             Kadra i Samochody
                         </a>
-                        <a href="#galeria" className="text-gray-700 hover:text-blue-600">
+                        <a href="/gallery" className="text-gray-700 hover:text-blue-600">
                             Galeria
                         </a>
                         <a href="#opinie" className="text-gray-700 hover:text-blue-600">
