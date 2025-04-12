@@ -1,3 +1,4 @@
+import homeImage from './home.png';
 function Hero() {
     return (
         <section className="pt-32 h-[800px] bg-gradient-to-r from-blue-600 to-blue-800">
@@ -5,7 +6,7 @@ function Hero() {
                 <div className="flex flex-col md:flex-row items-center">
                     <div className="md:w-1/2 text-white">
                         <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                            Zdobądź prawo jazdy z nami!
+                            Zdobądź prawo jazdy z Drive Pro!
                         </h1>
                         <p className="text-xl mb-8">Profesjonalna szkoła nauki jazdy w Twojej okolicy</p>
                         <div className="flex space-x-4">
@@ -27,7 +28,7 @@ function Hero() {
                         <div className="relative h-[500px] w-full">
                             <img
                                 className="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-2xl"
-                                src="https://storage.googleapis.com/uxpilot-auth.appspot.com/be84c6def1-0cc46ffb25f142557a53.png"
+                                src={homeImage}
                                 alt="modern driving school car with instructor and student, professional photography"
                             />
                         </div>

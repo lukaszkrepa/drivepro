@@ -17,13 +17,13 @@ function Footer() {
                     <div>
                         <h3 className="text-xl font-bold mb-4">Kontakt</h3>
                         <p className="mb-2">
-                            <FontAwesomeIcon icon={faPhone} className="mr-2" /> +48 123 456 789
+                            <FontAwesomeIcon icon={faPhone} className="mr-2" /> +48 724 755 755
                         </p>
                         <p className="mb-2">
-                            <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> info@superprawojazdy.pl
+                            <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> Biuro@drivepro.pl
                         </p>
                         <p>
-                            <FontAwesomeIcon icon={faLocationDot} className="mr-2" /> ul. Główna 123, Warszawa
+                            <FontAwesomeIcon icon={faLocationDot} className="mr-2" /> ul. Sucha 93A, 66-004 Zielona Góra
                         </p>
                     </div>
                     <div>
