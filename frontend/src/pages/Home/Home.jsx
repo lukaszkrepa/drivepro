@@ -2,7 +2,7 @@ import Hero from './Hero.jsx';
 import Courses from './Courses.jsx';
 import SignupSteps from './SignupSteps.jsx';
 import TeamAndCars from './TeamAndCars.jsx';
-import Gallery from '../Gallery/Gallery.jsx';
+import Gallery from './Gallery.jsx';
 import Reviews from './Reviews.jsx';
 import FAQ from './FAQ.jsx';
 

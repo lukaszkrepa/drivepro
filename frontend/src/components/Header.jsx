@@ -49,7 +49,7 @@ function Header() {
                         <a href="/gallery" className="text-gray-700 hover:text-blue-600">
                             Galeria
                         </a>
-                        <a href="#opinie" className="text-gray-700 hover:text-blue-600">
+                        <a href="/reviews" className="text-gray-700 hover:text-blue-600">
                             Opinie
                         </a>
                         <a
