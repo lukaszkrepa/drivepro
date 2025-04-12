@@ -37,7 +37,7 @@ function Header() {
                                 <FontAwesomeIcon icon={faInstagram} />
                             </a>
                         </div>
-                        <a href="#kursy" className="text-gray-700 hover:text-blue-600">
+                        <a href="/courses" className="text-gray-700 hover:text-blue-600">
                             Kursy
                         </a>
                         <a href="#zapisy" className="text-gray-700 hover:text-blue-600">
@@ -53,14 +53,14 @@ function Header() {
                             Opinie
                         </a>
                         <a
-                            href="https://superpawojazdy.pl"
+                            href="https://www.superprawojazdy.pl"
                             className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors shadow-md"
                         >
                             <FontAwesomeIcon icon={FaGraduationCap} className="mr-2" />
                             Teoria Online
                         </a>
                         <a
-                            href="#kalendarz"
+                            href="https://kalendarz.drivepro.pl"
                             className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors shadow-md"
                         >
                             <FontAwesomeIcon icon={FaCalendarAlt} className="mr-2" />
