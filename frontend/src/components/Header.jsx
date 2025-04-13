@@ -44,13 +44,19 @@ function Header() {
                             Kursy
                         </a>
                         <a href="/instructors" className="text-gray-700 hover:text-blue-600">
-                            Kadra i Samochody
+                            Kadra
                         </a>
                         <a href="/gallery" className="text-gray-700 hover:text-blue-600">
                             Galeria
                         </a>
                         <a href="/reviews" className="text-gray-700 hover:text-blue-600">
                             Opinie
+                        </a>
+                        <a href="/reviews" className="text-gray-700 hover:text-blue-600">
+                            Opinie
+                        </a>
+                        <a href="/faq" className="text-gray-700 hover:text-blue-600">
+                            FAQ
                         </a>
                         <a
                             href="https://www.superprawojazdy.pl"
@@ -64,7 +70,7 @@ function Header() {
                             className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors shadow-md"
                         >
                             <FontAwesomeIcon icon={FaCalendarAlt} className="mr-2"/>
-                            Kalendarz Drive Pro
+                            Kalendarz
                         </a>
                     </nav>
                 </div>
