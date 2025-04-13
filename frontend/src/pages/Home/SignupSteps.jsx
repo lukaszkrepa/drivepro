@@ -36,7 +36,7 @@ function SignupSteps() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {steps.map((step) => (
                         <div key={step.id} className="text-center">
-                            <div className="text-5xl text-blue-600 mb-4">
+                            <div className="text-5xl text-red-600 mb-4">
                                 <FontAwesomeIcon icon={step.icon} />
                             </div>
                             <h3 className="text-xl font-bold mb-2">{step.title}</h3>

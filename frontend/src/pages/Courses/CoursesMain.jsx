@@ -8,33 +8,16 @@ const coursesData = [
             'https://storage.googleapis.com/uxpilot-auth.appspot.com/bc00e3fbaa-5c2171c7714ac69da09a.png',
         imageAlt: 'modern car with driving school sign on top',
         title: 'Kurs kat. B',
-        tag: 'Standard',
+        tag: 'zwykły',
         tagColor: 'blue',
         features: [
             { text: '30h teorii', icon: 'check', iconColor: 'green' },
             { text: '30h praktyki', icon: 'check', iconColor: 'green' },
             { text: 'Materiały', icon: 'check', iconColor: 'green' },
         ],
-        price: '2499 zł',
+        price: '3600 zł',
         buttonText: 'Zapisz się',
-        buttonColor: 'blue',
-    },
-    {
-        id: 'course-card-b-fast',
-        imageSrc:
-            'https://storage.googleapis.com/uxpilot-auth.appspot.com/01da0f44ca-fdd88262367c3213d860.png',
-        imageAlt: 'fast course driving training',
-        title: 'Kurs kat. B szybki',
-        tag: 'Express',
-        tagColor: 'orange',
-        features: [
-            { text: '30h teorii', icon: 'check', iconColor: 'green' },
-            { text: '30h praktyki', icon: 'check', iconColor: 'green' },
-            { text: 'Kurs w 3 tygodnie', icon: 'bolt', iconColor: 'orange' },
-        ],
-        price: '2999 zł',
-        buttonText: 'Zapisz się',
-        buttonColor: 'orange',
+        buttonColor: 'red',
     },
     {
         id: 'course-card-b-english',
@@ -49,9 +32,9 @@ const coursesData = [
             { text: '30h practice', icon: 'check', iconColor: 'green' },
             { text: 'English materials', icon: 'globe', iconColor: 'purple' },
         ],
-        price: '2799 zł',
+        price: '4500 zł',
         buttonText: 'Sign up',
-        buttonColor: 'purple',
+        buttonColor: 'red',
     },
     {
         id: 'course-card-additional',
@@ -59,24 +42,24 @@ const coursesData = [
             'https://storage.googleapis.com/uxpilot-auth.appspot.com/bc00e3fbaa-5c2171c7714ac69da09a.png',
         imageAlt: 'additional driving lessons',
         title: 'Jazdy Dodatkowe',
-        tag: 'Praktyka',
+        tag: '',
         tagColor: 'green',
         features: [
             { text: 'Elastyczne terminy', icon: 'clock', iconColor: 'green' },
             { text: 'Dowolna ilość', icon: 'car', iconColor: 'green' },
             { text: 'Trasy egzaminacyjne', icon: 'road', iconColor: 'green' },
         ],
-        price: '99 zł/h',
-        buttonText: 'Zamów',
-        buttonColor: 'green',
+        price: '',
+        buttonText: 'Zapisz się',
+        buttonColor: 'red',
     },
 ];
 
 const CoursesMain = () => {
     return (
         <section id="courses-main" className="py-20">
-            <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="container mx-auto px4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {coursesData.map((course) => (
                         <CourseCard
                             key={course.id}

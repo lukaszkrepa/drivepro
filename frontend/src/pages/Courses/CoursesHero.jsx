@@ -4,7 +4,7 @@ const CoursesHero = () => {
     return (
         <section
             id="courses-hero"
-            className="pt-32 bg-gradient-to-r from-blue-600 to-blue-800 h-[400px]"
+            className="pt-32 bg-gradient-to-r from-red-600 to-red-800 h-[400px]"
         >
             <div className="container mx-auto px-4">
                 <div className="text-center text-white">

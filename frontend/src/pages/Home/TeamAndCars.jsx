@@ -49,7 +49,7 @@ function TeamAndCars() {
                                     key={index}
                                     className="bg-white p-4 rounded-lg flex items-center space-x-4"
                                 >
-                                    <FontAwesomeIcon icon={faCar} className="text-4xl text-blue-600" />
+                                    <FontAwesomeIcon icon={faCar} className="text-4xl text-red-600" />
                                     <div>
                                         <h4 className="font-bold">{car.name}</h4>
                                         <p className="text-gray-600">{car.year}</p>

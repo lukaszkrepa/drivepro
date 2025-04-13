@@ -12,7 +12,7 @@ function Header() {
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-center h-24">
                     <div className="flex items-center">
-                        <a href="/" className="text-3xl font-bold text-blue-600 tracking-tight">
+                        <a href="/" className="text-5xl font-bold text-red-600 tracking-tight">
                             DrivePro.pl
                         </a>
                     </div>
@@ -20,19 +20,19 @@ function Header() {
                         <div className="flex items-center space-x-6 mr-10">
                             <a
                                 href="https://facebook.com"
-                                className="text-2xl text-blue-600 hover:text-blue-700 transition-colors"
+                                className="text-2xl text-red-600 hover:text-red-700 transition-colors"
                             >
                                 <FontAwesomeIcon icon={faFacebook} />
                             </a>
                             <a
                                 href="https://tiktok.com"
-                                className="text-2xl text-blue-600 hover:text-blue-700 transition-colors"
+                                className="text-2xl text-red-600 hover:text-red-700 transition-colors"
                             >
                                 <FontAwesomeIcon icon={faTiktok} />
                             </a>
                             <a
                                 href="https://instagram.com"
-                                className="text-2xl text-blue-600 hover:text-blue-700 transition-colors"
+                                className="text-2xl text-red-600 hover:text-red-700 transition-colors"
                             >
                                 <FontAwesomeIcon icon={faInstagram} />
                             </a>
@@ -54,7 +54,7 @@ function Header() {
                         </a>
                         <a
                             href="https://www.superprawojazdy.pl"
-                            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors shadow-md"
+                            className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors shadow-md"
                         >
                             <FontAwesomeIcon icon={FaGraduationCap} className="mr-2" />
                             Teoria Online
@@ -64,7 +64,7 @@ function Header() {
                             className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors shadow-md"
                         >
                             <FontAwesomeIcon icon={FaCalendarAlt} className="mr-2" />
-                            Kalendarz
+                            Kalendarz Drive Pro
                         </a>
                     </nav>
                 </div>

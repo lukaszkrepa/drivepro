@@ -67,7 +67,7 @@ function Footer() {
                     </div>
                 </div>
                 <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-                    <p>© 2025 SuperPrawoJazdy.pl. Wszelkie prawa zastrzeżone.</p>
+                    <p>© 2025 drivepro.pl. Wszelkie prawa zastrzeżone.</p>
                 </div>
             </div>
         </footer>

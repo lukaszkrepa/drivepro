@@ -36,13 +36,13 @@ function Courses() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {courses.map((course) => (
                         <div key={course.id} className="bg-white rounded-xl shadow-lg p-6">
-                            <div className="text-blue-600 text-4xl mb-4">
+                            <div className="text-red-600 text-4xl mb-4">
                                 <FontAwesomeIcon icon={course.icon} />
                             </div>
                             <h3 className="text-xl font-bold mb-4">{course.title}</h3>
                             <p className="text-gray-600 mb-4">{course.description}</p>
-                            <p className="text-2xl font-bold text-blue-600 mb-4">{course.price}</p>
-                            <span className="block text-center bg-blue-600 text-white py-2 rounded-full hover:bg-blue-700 cursor-pointer">
+                            <p className="text-2xl font-bold text-red-600 mb-4">{course.price}</p>
+                            <span className="block text-center bg-red-600 text-white py-2 rounded-full hover:bg-red-700 cursor-pointer">
                 {course.buttonText}
               </span>
                         </div>
