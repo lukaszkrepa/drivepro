@@ -22,26 +22,26 @@ function Header() {
                                 href="https://facebook.com"
                                 className="text-2xl text-red-600 hover:text-red-700 transition-colors"
                             >
-                                <FontAwesomeIcon icon={faFacebook} />
+                                <FontAwesomeIcon icon={faFacebook}/>
                             </a>
                             <a
                                 href="https://tiktok.com"
                                 className="text-2xl text-red-600 hover:text-red-700 transition-colors"
                             >
-                                <FontAwesomeIcon icon={faTiktok} />
+                                <FontAwesomeIcon icon={faTiktok}/>
                             </a>
                             <a
                                 href="https://instagram.com"
                                 className="text-2xl text-red-600 hover:text-red-700 transition-colors"
                             >
-                                <FontAwesomeIcon icon={faInstagram} />
+                                <FontAwesomeIcon icon={faInstagram}/>
                             </a>
                         </div>
+                        <a href="/signup" className="text-gray-700 hover:text-blue-600">
+                            Jak się zapisać
+                        </a>
                         <a href="/courses" className="text-gray-700 hover:text-blue-600">
                             Kursy
-                        </a>
-                        <a href="#zapisy" className="text-gray-700 hover:text-blue-600">
-                            Jak się zapisać
                         </a>
                         <a href="/instructors" className="text-gray-700 hover:text-blue-600">
                             Kadra i Samochody
@@ -56,14 +56,14 @@ function Header() {
                             href="https://www.superprawojazdy.pl"
                             className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors shadow-md"
                         >
-                            <FontAwesomeIcon icon={FaGraduationCap} className="mr-2" />
+                            <FontAwesomeIcon icon={FaGraduationCap} className="mr-2"/>
                             Teoria Online
                         </a>
                         <a
                             href="https://kalendarz.drivepro.pl"
                             className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors shadow-md"
                         >
-                            <FontAwesomeIcon icon={FaCalendarAlt} className="mr-2" />
+                            <FontAwesomeIcon icon={FaCalendarAlt} className="mr-2"/>
                             Kalendarz Drive Pro
                         </a>
                     </nav>

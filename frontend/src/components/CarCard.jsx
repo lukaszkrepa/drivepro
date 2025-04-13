@@ -13,7 +13,7 @@ const CarCard = ({ id, name, details }) => {
     return (
         <div id={id} className="bg-white rounded-xl shadow-lg overflow-hidden">
             <div className="h-48 bg-gray-100 flex items-center justify-center">
-                <FontAwesomeIcon icon={faCar} className="text-6xl text-blue-600" />
+                <FontAwesomeIcon icon={faCar} className="text-6xl text-red-600" />
             </div>
             <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">{name}</h3>

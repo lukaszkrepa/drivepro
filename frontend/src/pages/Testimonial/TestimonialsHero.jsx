@@ -4,7 +4,7 @@ const TestimonialsHero = () => {
   return (
     <section
       id="testimonials-hero"
-      className="pt-20 h-[400px] bg-gradient-to-r from-blue-600 to-blue-800"
+      className="pt-20 h-[400px] bg-gradient-to-r from-red-600 to-red-800"
     >
       <div className="container mx-auto px-4 h-full flex items-center">
         <div className="text-center w-full">

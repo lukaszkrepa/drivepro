@@ -8,7 +8,7 @@ function Courses() {
             icon: faCar,
             title: 'Kurs podstawowy kat. B',
             description: '30 godzin teorii + 30 godzin praktyki',
-            price: '2499 zł',
+            price: '3600 zł',
             buttonText: 'Zapisz się',
         },
         {
@@ -16,7 +16,7 @@ function Courses() {
             icon: faGraduationCap,
             title: 'Kurs rozszerzony',
             description: '40 godzin teorii + 40 godzin praktyki',
-            price: '3299 zł',
+            price: '4500 zł',
             buttonText: 'Zapisz się',
         },
         {
@@ -24,7 +24,7 @@ function Courses() {
             icon: faClock,
             title: 'Jazdy dodatkowe',
             description: 'Dodatkowe godziny praktyki',
-            price: '99 zł/h',
+            price: '',
             buttonText: 'Zamów',
         },
     ];
@@ -41,10 +41,15 @@ function Courses() {
                             </div>
                             <h3 className="text-xl font-bold mb-4">{course.title}</h3>
                             <p className="text-gray-600 mb-4">{course.description}</p>
-                            <p className="text-2xl font-bold text-red-600 mb-4">{course.price}</p>
-                            <span className="block text-center bg-red-600 text-white py-2 rounded-full hover:bg-red-700 cursor-pointer">
-                {course.buttonText}
-              </span>
+                            <div className="mt-auto">
+                                <p className="text-2xl font-bold text-red-600 mb-4 min-h-[2.5rem]">
+                                    {course.price || '\u00A0' /* Non-breaking space to keep height */}
+                                </p>
+                                <span
+                                    className="block text-center bg-red-600 text-white py-2 rounded-full hover:bg-red-700 cursor-pointer">
+                                    {course.buttonText}
+                                </span>
+                            </div>
                         </div>
                     ))}
                 </div>

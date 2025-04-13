@@ -5,15 +5,15 @@ function SignupSteps() {
     const steps = [
         {
             id: 'step-1',
-            icon: faIdCard,
+            icon: faNotesMedical,
             title: 'Krok 1',
-            description: 'Uzyskaj PKK w swoim urzędzie',
+            description: 'Wykonaj badania lekarskie',
         },
         {
             id: 'step-2',
-            icon: faNotesMedical,
+            icon: faIdCard,
             title: 'Krok 2',
-            description: 'Wykonaj badania lekarskie',
+            description: 'Uzyskaj PKK w swoim urzędzie',
         },
         {
             id: 'step-3',
