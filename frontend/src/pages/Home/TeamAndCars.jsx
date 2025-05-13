@@ -1,19 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
+import {useEffect, useState} from "react";
+import {fetchInstructors} from "../../services/fetchInstructors.js";
 
 function TeamAndCars() {
-    const instructors = [
-        {
-            name: 'Jan Kowalski',
-            experience: '15 lat doświadczenia',
-            avatar: 'https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-2.jpg',
-        },
-        {
-            name: 'Piotr Nowak',
-            experience: '12 lat doświadczenia',
-            avatar: 'https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-3.jpg',
-        },
-    ];
+    const [instructors, setInstructors] = useState([]);
+
+    useEffect(() => {
+        fetchInstructors()
+            .then(setInstructors)
+            .catch(console.error);
+    }, []);
 
     const cars = [
         { name: 'Toyota Yaris', year: 'Rocznik 2024' },
@@ -30,9 +27,9 @@ function TeamAndCars() {
                         {instructors.map((instructor, index) => (
                             <div key={index} className="flex items-center space-x-4 bg-white p-4 rounded-lg">
                                 <img
-                                    src={instructor.avatar}
+                                    src={instructor.imageSrc}
+                                    alt={instructor.imageAlt}
                                     className="w-16 h-16 rounded-full"
-                                    alt="Instruktor"
                                 />
                                 <div>
                                     <h4 className="font-bold">{instructor.name}</h4>
