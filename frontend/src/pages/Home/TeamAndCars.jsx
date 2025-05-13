@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
 import {useEffect, useState} from "react";
 import {fetchInstructors} from "../../services/fetchInstructors.js";
+import {fetchCars} from "../../services/fetchCars.js";
 
 function TeamAndCars() {
     const [instructors, setInstructors] = useState([]);
@@ -12,10 +13,12 @@ function TeamAndCars() {
             .catch(console.error);
     }, []);
 
-    const cars = [
-        { name: 'Toyota Yaris', year: 'Rocznik 2024' },
-        { name: 'Volkswagen Golf', year: 'Rocznik 2024' },
-    ];
+    const [cars,setCars] = useState([])
+    useEffect(() => {
+        fetchCars()
+            .then(setCars)
+            .catch(console.error);
+    }, []);
 
     return (
         <section className="py-20 bg-gray-50">
