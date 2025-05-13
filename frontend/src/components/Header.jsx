@@ -62,14 +62,14 @@ function Header() {
                             href="https://www.superprawojazdy.pl"
                             className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors shadow-md"
                         >
-                            <FontAwesomeIcon icon={FaGraduationCap} className="mr-2"/>
+                            <FaGraduationCap className="mr-2" />
                             Teoria Online
                         </a>
                         <a
                             href="https://kalendarz.drivepro.pl"
                             className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors shadow-md"
                         >
-                            <FontAwesomeIcon icon={FaCalendarAlt} className="mr-2"/>
+                            <FaCalendarAlt className="mr-2" />
                             Kalendarz
                         </a>
                     </nav>
