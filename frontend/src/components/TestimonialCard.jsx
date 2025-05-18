@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
 
 const TestimonialCard = ({
-                             avatarSrc,
-                             avatarAlt = 'Avatar',
                              name,
                              rating,
                              courseInfo,
@@ -32,11 +30,6 @@ const TestimonialCard = ({
             className={`bg-white p-${isFeatured ? '8' : '6'} rounded-xl shadow-lg`}
         >
             <div className={`flex items-center mb-${isFeatured ? '6' : '4'}`}>
-                <img
-                    src={avatarSrc}
-                    alt={avatarAlt}
-                    className={`w-${isFeatured ? '16' : '12'} h-${isFeatured ? '16' : '12'} rounded-full`}
-                />
                 <div className="ml-4">
                     <h3 className={`font-bold ${isFeatured ? 'text-xl' : ''}`}>
                         {name}
