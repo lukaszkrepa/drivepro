@@ -1,4 +1,6 @@
 import React from "react";
+import { faCheck, faBolt, faGlobe, faClock, faCar, faRoad } from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const CoursesCard = ({
                          id,
@@ -15,8 +17,21 @@ const CoursesCard = ({
                          onEdit,
                          onDelete
                      }) => {
+    const iconMap = {
+        check: faCheck,
+        bolt: faBolt,
+        globe: faGlobe,
+        clock: faClock,
+        car: faCar,
+        road: faRoad,
+    };
     return (
-        <div className="bg-blue-50 p-6 rounded-xl shadow relative group">
+
+        <div
+
+            className="bg-blue-50 p-6 rounded-xl shadow relative group cursor-pointer"
+            onClick={onEdit}
+        >
             {imageSrc && (
                 <img
                     src={imageSrc}
@@ -32,8 +47,8 @@ const CoursesCard = ({
                 </div>
                 {tag && (
                     <span className={`text-sm font-semibold px-2 py-1 rounded-full bg-${tagColor}-100 text-${tagColor}-700`}>
-            {tag}
-          </span>
+                        {tag}
+                    </span>
                 )}
             </div>
 
@@ -43,14 +58,19 @@ const CoursesCard = ({
                     return (
                         <li key={index} className="flex items-center space-x-2">
                             {isObject && feature.icon && (
-                                <i className={`fa-solid fa-${feature.icon} text-${feature.iconColor || "blue"}-600`}></i>
+                                <i className={`fa-solid fa-${feature.icon} text-${feature.iconColor || "blue"}-600`}>
+                                    <FontAwesomeIcon
+                                        icon={iconMap[feature.icon]}
+                                        className={`mr-2 text-${feature.iconColor}-500`}
+
+                                    />
+                                </i>
                             )}
                             <span>{isObject ? feature.text : feature}</span>
                         </li>
                     );
                 })}
             </ul>
-
 
             <div className="text-blue-700 font-extrabold text-2xl mb-4">{price}</div>
 
@@ -61,10 +81,22 @@ const CoursesCard = ({
             </button>
 
             <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition">
-                <button onClick={onEdit} className="text-blue-600 hover:text-blue-800">
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onEdit();
+                    }}
+                    className="text-blue-600 hover:text-blue-800"
+                >
                     <i className="fa-regular fa-pen-to-square text-lg"></i>
                 </button>
-                <button onClick={onDelete} className="text-red-500 hover:text-red-700">
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onDelete();
+                    }}
+                    className="text-red-500 hover:text-red-700"
+                >
                     <i className="fa-solid fa-trash text-lg"></i>
                 </button>
             </div>

@@ -3,6 +3,17 @@ module.exports = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
   ],
+  safelist: [
+    {
+      pattern: /text-(blue|green|red|yellow|gray)-600/,
+    },
+    {
+      pattern: /bg-(blue|green|red|yellow|gray)-100/,
+    },
+    {
+      pattern: /text-(blue|green|red|yellow|gray)-700/,
+    },
+  ],
   theme: {
     extend: {
       colors: {
@@ -266,4 +277,5 @@ module.exports = {
     },
   },
   plugins: [],
+
 };
