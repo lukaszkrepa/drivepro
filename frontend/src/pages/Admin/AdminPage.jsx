@@ -6,6 +6,7 @@ import CoursesMain from "./Courses/CoursesMain.jsx";
 import InstructorsMain from "./Instructors/InstructorsMain.jsx";
 import GalleryMain from "./Gallery/GalleryMain.jsx";
 import FaqMain from "./Faq/FaqMain.jsx";
+import {withAuthenticator} from "@aws-amplify/ui-react";
 
 const AdminPage = () => {
     const [tab, setTab] = useState('kursy');
@@ -31,4 +32,4 @@ const AdminPage = () => {
     );
 };
 
-export default AdminPage;
+export default withAuthenticator(AdminPage);
