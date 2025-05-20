@@ -8,10 +8,14 @@ import InstructorsAndCars from "./pages/InstructorsAndCars/InstructorsAndCars.js
 import Courses from "./pages/Courses/Courses.jsx";
 import Signup from "./pages/Signup/Singup.jsx";
 import FAQ from "./pages/FAQ/FAQ.jsx";
+import AdminPanel from "./pages/Admin/AdminPanel.jsx";
 
 function App() {
     return (
         <Router>
+            <Routes>
+                <Route path="/admin" element={<AdminPanel/>}/>
+            </Routes>
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
