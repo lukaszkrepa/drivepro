@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faGraduationCap, faClock } from '@fortawesome/free-solid-svg-icons';
-import {fetchCourses} from "../../services/fetchCourses.js";
+import {fetchCourses} from "../../services/Courses/fetchCourses.js";
 import {useEffect, useState} from "react";
 const iconMap = {
     faCar: faCar,

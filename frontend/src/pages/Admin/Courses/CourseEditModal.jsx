@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import { updateCourse } from "../../../services/updateCourse";
-import { deleteCourse } from "../../../services/deleteCourse";
+import { updateCourse } from "../../../services/Courses/updateCourse.js";
+import { deleteCourse } from "../../../services/Courses/deleteCourse.js";
 import { uploadImage } from "../../../services/uploadImage";
 import { faCheck, faBolt, faGlobe, faClock, faCar, faRoad } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -50,19 +50,6 @@ const CourseEditModal = ({ course, onSave, onClose }) => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleFeatureChange = (index, value) => {
-        const updated = [...formData.features];
-        updated[index] = value;
-        setFormData((prev) => ({ ...prev, features: updated }));
-    };
-
-    const handleAddFeature = () => {
-        setFormData((prev) => ({
-            ...prev,
-            features: [...(prev.features || []), ""]
-        }));
-    };
-
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -75,39 +62,28 @@ const CourseEditModal = ({ course, onSave, onClose }) => {
         }
     };
 
-
-
     const handleDelete = async () => {
         if (!window.confirm("Czy na pewno chcesz usunąć ten kurs?")) return;
         try {
             await deleteCourse(formData.id);
-            onClose(); // close the modal
-            window.location.reload(); // or call a parent-provided onDelete() to update UI state
+            onClose();
+            window.location.reload();
         } catch (err) {
             console.error("Błąd podczas usuwania kursu:", err);
         }
     };
 
-
-
-    const handleRemoveFeature = (index) => {
-        const updated = [...formData.features];
-        updated.splice(index, 1);
-        setFormData((prev) => ({ ...prev, features: updated }));
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await updateCourse(formData); // sends to DynamoDB
-            onSave(formData);             // updates UI state
-            onClose();                    // closes modal
+            await updateCourse(formData);
+            onSave(formData);
+            onClose();
             window.location.reload()
         } catch (err) {
             console.error("DynamoDB update error:", err);
         }
     };
-
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50" onClick={handleBackdropClick}>

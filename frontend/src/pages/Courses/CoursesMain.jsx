@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import CourseCard from '../../components/CourseCard';
 
-import {fetchCourses} from "../../services/fetchCourses.js";
+import {fetchCourses} from "../../services/Courses/fetchCourses.js";
 
 
 const CoursesMain = () => {

@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import CoursesCard from "./CoursesCard.jsx";
-import { fetchCourses } from "../../../services/fetchCourses.js";
-import { addCourse } from "../../../services/addCourse";
-import { deleteCourse } from "../../../services/deleteCourse";
-
+import { fetchCourses } from "../../../services/Courses/fetchCourses.js";
+import { addCourse } from "../../../services/Courses/addCourse.js";
+import { deleteCourse } from "../../../services/Courses/deleteCourse.js";
 import CourseEditModal from "./CourseEditModal.jsx";
 
 const CoursesMain = () => {
     const [courses, setCourses] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState(null);
     const [isNew, setIsNew] = useState(false);
-
 
     useEffect(() => {
         fetchCourses()
@@ -32,14 +30,6 @@ const CoursesMain = () => {
         } catch (err) {
             console.error("Błąd podczas usuwania kursu:", err);
         }
-    };
-
-
-    const handleSave = (updatedCourse) => {
-        setCourses((prev) =>
-            prev.map((c) => (c.id === updatedCourse.id ? updatedCourse : c))
-        );
-        setSelectedCourse(null);
     };
 
     const handleClose = () => {
@@ -108,7 +98,6 @@ const CoursesMain = () => {
                     onClose={handleClose}
                 />
             )}
-
         </section>
     );
 };
