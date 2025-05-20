@@ -8,7 +8,7 @@ import InstructorsAndCars from "./pages/InstructorsAndCars/InstructorsAndCars.js
 import Courses from "./pages/Courses/Courses.jsx";
 import Signup from "./pages/Signup/Singup.jsx";
 import FAQ from "./pages/FAQ/FAQ.jsx";
-import AdminPanel from "./pages/Admin/AdminPanel.jsx";
+import AdminPanel from "./pages/Admin/AdminPage.jsx";
 
 function App() {
     return (

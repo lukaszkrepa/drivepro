@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-drivepro-dev-6288e-authRole",
+      "UnauthRoleArn": "arn:aws:iam::730335193488:role/amplify-drivepro-dev-6288e-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::730335193488:role/amplify-drivepro-dev-6288e-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-drivepro-dev-6288e-deployment",
+      "UnauthRoleName": "amplify-drivepro-dev-6288e-unauthRole",
+      "StackName": "amplify-drivepro-dev-6288e",
+      "StackId": "arn:aws:cloudformation:eu-west-1:730335193488:stack/amplify-drivepro-dev-6288e/946362b0-0cc4-11f0-8eeb-0a87a24aca29",
+      "AmplifyAppId": "d2vnxeqwyxqa44"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2vnxeqwyxqa44",
+          "type": "manual"
+        }
+      },
+      "auth": {
+        "driveprob9115136": {}
+      }
+    }
+  }
+}
