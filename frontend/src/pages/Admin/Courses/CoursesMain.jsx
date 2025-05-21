@@ -4,6 +4,7 @@ import { fetchCourses } from "../../../services/Courses/fetchCourses.js";
 import { addCourse } from "../../../services/Courses/addCourse.js";
 import { deleteCourse } from "../../../services/Courses/deleteCourse.js";
 import CourseEditModal from "./CourseEditModal.jsx";
+import {updateCourse} from "../../../services/Courses/updateCourse.js";
 
 const CoursesMain = () => {
     const [courses, setCourses] = useState([]);

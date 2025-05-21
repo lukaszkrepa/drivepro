@@ -4,6 +4,7 @@ import { deleteCourse } from "../../../services/Courses/deleteCourse.js";
 import { uploadImage } from "../../../services/uploadImage";
 import { faCheck, faBolt, faGlobe, faClock, faCar, faRoad } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {deleteImage} from "../../../services/imageService.js";
 
 const ICON_OPTIONS = [
     { name: "check", icon: faCheck, label: "Zaznacz" },
@@ -55,21 +56,29 @@ const CourseEditModal = ({ course, onSave, onClose }) => {
         if (!file) return;
 
         try {
+            if (formData.imageSrc) {
+                await deleteImage(formData.imageSrc);
+            }
+
             const imageUrl = await uploadImage(file);
             setFormData((prev) => ({ ...prev, imageSrc: imageUrl }));
         } catch (err) {
-            console.error("Błąd podczas przesyłania obrazu:", err);
+            console.error("Image upload failed:", err);
         }
     };
 
     const handleDelete = async () => {
-        if (!window.confirm("Czy na pewno chcesz usunąć ten kurs?")) return;
+        if (!window.confirm("Are you sure?")) return;
+
         try {
+            if (formData.imageSrc) {
+                await deleteImage(formData.imageSrc);
+            }
             await deleteCourse(formData.id);
             onClose();
             window.location.reload();
         } catch (err) {
-            console.error("Błąd podczas usuwania kursu:", err);
+            console.error("Delete failed:", err);
         }
     };
 
@@ -79,7 +88,7 @@ const CourseEditModal = ({ course, onSave, onClose }) => {
             await updateCourse(formData);
             onSave(formData);
             onClose();
-            window.location.reload()
+            // window.location.reload()
         } catch (err) {
             console.error("DynamoDB update error:", err);
         }

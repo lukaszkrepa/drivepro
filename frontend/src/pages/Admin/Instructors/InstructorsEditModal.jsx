@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { uploadImage } from "../../../services/uploadImage";
 import { updateInstructor } from "../../../services/updateInstructor";
 import { deleteInstructor } from "../../../services/deleteInstructor";
+import {deleteImage} from "../../../services/imageService.js";
 
 
 const InstructorsEditModal = ({ instructor, onSave, onClose }) => {
@@ -15,11 +16,16 @@ const InstructorsEditModal = ({ instructor, onSave, onClose }) => {
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
+
         try {
+            if (formData.imageSrc) {
+                await deleteImage(formData.imageSrc);
+            }
+
             const imageUrl = await uploadImage(file);
             setFormData((prev) => ({ ...prev, imageSrc: imageUrl }));
         } catch (err) {
-            console.error("Błąd podczas przesyłania obrazu:", err);
+            console.error("Image upload failed:", err);
         }
     };
 
@@ -36,14 +42,18 @@ const InstructorsEditModal = ({ instructor, onSave, onClose }) => {
     };
 
     const handleDelete = async () => {
-        if (!window.confirm("Czy na pewno chcesz usunąć tego instruktora?")) return;
+        if (!window.confirm("Are you sure?")) return;
+
         try {
-            console.log(formData.Id)
+            if (formData.imageSrc) {
+                await deleteImage(formData.imageSrc);
+            }
+
             await deleteInstructor(formData.Id);
             onClose();
             window.location.reload();
         } catch (err) {
-            console.error("Błąd przy usuwaniu instruktora:", err);
+            console.error("Delete failed:", err);
         }
     };
 
