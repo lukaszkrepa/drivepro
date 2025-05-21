@@ -1,4 +1,13 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faCheck,
+    faBolt,
+    faGlobe,
+    faClock,
+    faCar,
+    faRoad,
+} from '@fortawesome/free-solid-svg-icons';
 
 const InstructorsCard = ({
                              id,
@@ -10,8 +19,21 @@ const InstructorsCard = ({
                              onEdit,
                              onDelete,
                          }) => {
+    const ICON_MAP = {
+        check: faCheck,
+        bolt: faBolt,
+        globe: faGlobe,
+        clock: faClock,
+        car: faCar,
+        road: faRoad,
+    };
+
     return (
-        <div className="bg-blue-50 p-6 rounded-xl shadow flex flex-col items-center relative group">
+
+        <div
+            onClick={onEdit}
+            className="bg-blue-50 p-6 rounded-xl shadow flex flex-col items-center relative group cursor-pointer"
+        >
             {imageSrc && (
                 <img
                     src={imageSrc}
@@ -21,27 +43,49 @@ const InstructorsCard = ({
             )}
             <div className="text-xl font-bold mb-1">{name}</div>
             <div className="text-gray-600 mb-2">{experience}</div>
+
             <ul className="text-gray-700 text-sm text-center mb-3 space-y-1">
+
                 {qualifications.map((q, index) => (
                     <li key={index} className="flex justify-center items-center space-x-2">
-                        {typeof q === "object" ? (
-                            <>
-                                {q.icon && (
-                                    <i className={`fa-solid fa-${q.icon} text-${q.iconColor || "blue"}-600`}></i>
-                                )}
-                                <span>{q.text}</span>
+                {typeof q === "object" ? (
+                    <>
+                        <FontAwesomeIcon
+                            icon={faCheck}
+                            className={`mr-2 text-green-500`}
+                        />
+                        <span>{q.text}</span>
                             </>
                         ) : (
-                            <span>{q}</span>
-                        )}
+                    <div>
+                        <FontAwesomeIcon
+                            icon={faCheck}
+                            className={`mr-2 text-green-500`}
+                        />
+                        <span>{q}</span>
+                    </div>
+                )}
                     </li>
                 ))}
             </ul>
+
             <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition">
-                <button onClick={onEdit} className="text-blue-600 hover:text-blue-800">
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation(); // prevent card click from triggering
+                        onEdit();
+                    }}
+                    className="text-blue-600 hover:text-blue-800"
+                >
                     <i className="fa-regular fa-pen-to-square text-lg"></i>
                 </button>
-                <button onClick={onDelete} className="text-red-500 hover:text-red-700">
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onDelete();
+                    }}
+                    className="text-red-500 hover:text-red-700"
+                >
                     <i className="fa-solid fa-trash text-lg"></i>
                 </button>
             </div>

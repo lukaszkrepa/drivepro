@@ -38,7 +38,7 @@ const CoursesMain = () => {
     };
     const handleAddCourse = () => {
         setSelectedCourse({
-            id: Date.now(), // temporary ID (can be replaced with UUID or backend-generated)
+            id: Date.now(),
             title: "",
             price: "",
             tag: "",

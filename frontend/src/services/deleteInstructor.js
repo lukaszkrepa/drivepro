@@ -1,0 +1,16 @@
+// services/deleteInstructor.js
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, DeleteCommand } from "@aws-sdk/lib-dynamodb";
+import { awsConfig } from "../config/awsConfig";
+
+const client = new DynamoDBClient(awsConfig);
+const ddbDocClient = DynamoDBDocumentClient.from(client);
+
+export async function deleteInstructor(Id) {
+    const command = new DeleteCommand({
+        TableName: "Instructors",
+        Key: { Id },
+    });
+
+    await ddbDocClient.send(command);
+}
