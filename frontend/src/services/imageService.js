@@ -15,7 +15,6 @@ export async function uploadImage(file) {
         Key: fileName,
         Body: fileBuffer,
         ContentType: file.type,
-        ACL: "public-read", // Optional, based on your bucket policy
     });
 
     await s3.send(command);

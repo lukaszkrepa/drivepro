@@ -68,7 +68,7 @@ const CourseEditModal = ({ course, onSave, onClose }) => {
     };
 
     const handleDelete = async () => {
-        if (!window.confirm("Are you sure?")) return;
+        if (!window.confirm("Czy napewno chcesz usunąć?")) return;
 
         try {
             if (formData.imageSrc) {
@@ -88,7 +88,7 @@ const CourseEditModal = ({ course, onSave, onClose }) => {
             await updateCourse(formData);
             onSave(formData);
             onClose();
-            // window.location.reload()
+            window.location.reload()
         } catch (err) {
             console.error("DynamoDB update error:", err);
         }

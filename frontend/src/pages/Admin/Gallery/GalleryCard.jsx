@@ -1,7 +1,8 @@
 import React from "react";
 
-const GalleryCard = ({ id, src, alt, title, description, onEdit, onDelete }) => (
-    <div className="relative group">
+const GalleryCard = ({ Id, src, alt, title, description, categories = [], onEdit, onDelete }) => (
+
+    <div className="relative group cursor-pointer" onClick={onEdit}>
         <img
             src={src}
             alt={alt || title || "Galeria"}
@@ -14,12 +15,34 @@ const GalleryCard = ({ id, src, alt, title, description, onEdit, onDelete }) => 
                 {description && <div className="text-xs">{description}</div>}
             </div>
         )}
+        {categories && categories.length > 0 && (
+            <div className="absolute top-2 left-2 flex gap-1 flex-wrap">
+                {categories.map((cat, idx) => (
+                    <span key={idx} className="bg-blue-600 text-white text-xs px-2 py-0.5 rounded-full">
+                {cat}
+            </span>
+                ))}
+            </div>
+        )}
 
-        <div className="absolute top-2 right-2 flex space-x-2 opacity-0 group-hover:opacity-100 transition">
-            <button onClick={onEdit} className="text-blue-600 hover:text-blue-800">
+
+        <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition">
+            <button
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onEdit();
+                }}
+                className="text-blue-600 hover:text-blue-800"
+            >
                 <i className="fa-regular fa-pen-to-square text-lg"></i>
             </button>
-            <button onClick={onDelete} className="text-red-500 hover:text-red-700">
+            <button
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onDelete();
+                }}
+                className="text-red-500 hover:text-red-700"
+            >
                 <i className="fa-solid fa-trash text-lg"></i>
             </button>
         </div>

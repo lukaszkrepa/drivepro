@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import GalleryItem from './GalleryItem';
 import GalleryCategories from './GalleryCategories';
-import { fetchGallery } from "../../services/fetchGallery.js";
+import { fetchGallery } from "../../services/Gallery/fetchGallery.js";
 
 const GalleryGrid = () => {
     const [gallery, setGallery] = useState([]);
