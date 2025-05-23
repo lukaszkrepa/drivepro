@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
 import {useEffect, useState} from "react";
-import {fetchInstructors} from "../../services/fetchInstructors.js";
+import {fetchInstructors} from "../../services/Instructors/fetchInstructors.js";
 import {fetchCars} from "../../services/fetchCars.js";
 
 function TeamAndCars() {

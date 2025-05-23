@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { uploadImage } from "../../../services/uploadImage";
-import { updateInstructor } from "../../../services/updateInstructor";
-import { deleteInstructor } from "../../../services/deleteInstructor";
+import { updateInstructor } from "../../../services/Instructors/updateInstructor.js";
+import { deleteInstructor } from "../../../services/Instructors/deleteInstructor.js";
 import {deleteImage} from "../../../services/imageService.js";
 
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import TestimonialCard from '../../components/TestimonialCard';
-import {fetchTestimonials} from "../../services/fetchTestimonials.js";
+import {fetchTestimonials} from "../../services/Testimonials/fetchTestimonials.js";
 
 
 const AllTestimonials = () => {

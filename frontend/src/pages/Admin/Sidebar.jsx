@@ -3,7 +3,8 @@ const Sidebar = ({ activeTab, onChangeTab }) => {
         { id: 'kursy', label: 'Kursy', icon: 'car-side' },
         { id: 'kadra', label: 'Kadra', icon: 'users-rectangle' },
         { id: 'galeria', label: 'Galeria', icon: 'image' },
-        { id: 'faq', label: 'FAQ', icon: 'circle-question' }
+        { id: 'faq', label: 'FAQ', icon: 'circle-question' },
+        { id: 'testimonials', label: 'Opinie', icon: 'circle-question'}
     ];
 
     return (

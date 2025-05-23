@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InstructorsCard from "./InstructorsCard.jsx";
 import InstructorsEditModal from "./InstructorsEditModal.jsx";
-import { fetchInstructors } from "../../../services/fetchInstructors.js";
+import { fetchInstructors } from "../../../services/Instructors/fetchInstructors.js";
 
 const InstructorsMain = () => {
     const [kadra, setKadra] = useState([]);

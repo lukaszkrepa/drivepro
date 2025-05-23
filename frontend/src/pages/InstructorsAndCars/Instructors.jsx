@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import InstructorCard from '../../components/InstructorCard';
-import {fetchInstructors} from "../../services/fetchInstructors.js";
+import {fetchInstructors} from "../../services/Instructors/fetchInstructors.js";
 
 const Instructors = () => {
     const [instructors, setInstructors] = useState([]);
