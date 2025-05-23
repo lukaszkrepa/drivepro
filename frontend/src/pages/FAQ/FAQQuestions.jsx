@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import FAQQuestion from '../../components/FAQQuestion';
-import {fetchFaq} from "../../services/fetchFaq.js";
+import {fetchFaq} from "../../services/Faq/fetchFaq.js";
 
 
 const FAQQuestions = () => {
