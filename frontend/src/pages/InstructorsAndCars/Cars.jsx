@@ -19,6 +19,7 @@ const Cars = () => {
                             key={car.Id}
                             id={car.Id}
                             name={car.name}
+                            imageSrc={car.imageSrc}
                             details={car.details}
                         />
                     ))}

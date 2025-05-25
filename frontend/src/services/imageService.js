@@ -25,8 +25,6 @@ export async function uploadImage(file) {
 // ✅ Delete image from S3
 export async function deleteImage(imageUrl) {
     const key = extractKeyFromUrl(imageUrl);
-    console.log("Extracted key for deletion:", key); // 🪵 LOG THIS
-
     if (!key) return;
 
     const command = new DeleteObjectCommand({

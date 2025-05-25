@@ -8,6 +8,7 @@ import GalleryMain from "./Gallery/GalleryMain.jsx";
 import FaqMain from "./Faq/FaqMain.jsx";
 import {withAuthenticator} from "@aws-amplify/ui-react";
 import TestimonialsMain from "./Testimonials/TestimonialsMain.jsx";
+import CarsMain from "./Cars/CarsMain.jsx";
 
 const AdminPage = () => {
     const [tab, setTab] = useState('kursy');
@@ -19,6 +20,7 @@ const AdminPage = () => {
             case 'galeria': return <GalleryMain/>;
             case 'faq': return <FaqMain/>;
             case 'testimonials': return <TestimonialsMain/>
+            case 'cars': return <CarsMain/>
             default: return null;
         }
     };
