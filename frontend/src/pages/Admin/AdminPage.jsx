@@ -12,7 +12,8 @@ import CarsMain from "./Cars/CarsMain.jsx";
 
 const AdminPage = () => {
     const [tab, setTab] = useState('kursy');
-
+    console.log(import.meta.env.VITE_ACCESS_KEY_ID || "")
+    console.log(import.meta.env.VITE_SECRET_ACCESS_KEY_ID || "")
     const renderTabContent = () => {
         switch (tab) {
             case 'kursy': return <CoursesMain/>;
@@ -36,4 +37,4 @@ const AdminPage = () => {
     );
 };
 
-export default withAuthenticator(AdminPage);
+export default AdminPage;
