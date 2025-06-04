@@ -1,10 +1,16 @@
+import React, {useEffect, useState} from "react";
+import {fetchFaq} from "../../services/Faq/fetchFaq.js";
+import FAQQuestion from "../../components/FAQQuestion.jsx";
+
 function FAQ() {
-    const faqs = [
-        { id: 'faq-1', question: 'Ile trwa kurs prawa jazdy?' },
-        { id: 'faq-2', question: 'Jakie dokumenty są potrzebne do rozpoczęcia kursu?' },
-        { id: 'faq-3', question: 'Czy mogę zmienić instruktora w trakcie kursu?' },
-        { id: 'faq-4', question: 'Jak wygląda płatność za kurs?' },
-    ];
+    const [faqs, setFaqs] = useState([])
+    useEffect(() => {
+        fetchFaq()
+            .then((res) => {
+                setFaqs(res.sort((a,b) => a.Id - b.Id));
+            })
+            .catch(console.error)
+    },[])
 
     return (
         <section className="py-20 bg-white">
@@ -12,9 +18,13 @@ function FAQ() {
                 <h2 className="text-3xl font-bold text-center mb-12">Często Zadawane Pytania</h2>
                 <div className="max-w-3xl mx-auto space-y-6">
                     {faqs.map((faq) => (
-                        <div key={faq.id} className="bg-gray-50 rounded-lg p-6">
-                            <h3 className="text-xl font-bold">{faq.question}</h3>
-                        </div>
+                        <FAQQuestion
+                            key={faq.Id}
+                            id={faq.Id}
+                            question={faq.question}
+                            answer={faq.answer}
+                            list={faq.list}
+                        />
                     ))}
                 </div>
             </div>
