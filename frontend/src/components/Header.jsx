@@ -52,9 +52,6 @@ function Header() {
                         <a href="/reviews" className="text-gray-700 hover:text-blue-600">
                             Opinie
                         </a>
-                        <a href="/reviews" className="text-gray-700 hover:text-blue-600">
-                            Opinie
-                        </a>
                         <a href="/faq" className="text-gray-700 hover:text-blue-600">
                             FAQ
                         </a>

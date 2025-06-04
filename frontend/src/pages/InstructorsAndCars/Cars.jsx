@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import CarCard from '../../components/CarCard';
-import {fetchCars} from "../../services/fetchCars.js";
+import {fetchCars} from "../../services/Cars/fetchCars.js";
 const Cars = () => {
     const [cars,setCars] = useState([])
 

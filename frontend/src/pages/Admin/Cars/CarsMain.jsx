@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import CarsCard from "./CarsCard.jsx";
 import CarEditModal from "./CarEditModal.jsx";
-import { fetchCars } from "../../../services/fetchCars.js";
-import { addCar } from "../../../services/addCar.js";
-import { updateCar } from "../../../services/updateCar.js";
-import { deleteCar } from "../../../services/deleteCar.js";
+import { fetchCars } from "../../../services/Cars/fetchCars.js";
+import { addCar } from "../../../services/Cars/addCar.js";
+import { updateCar } from "../../../services/Cars/updateCar.js";
+import { deleteCar } from "../../../services/Cars/deleteCar.js";
 
 const CarsMain = () => {
     const [cars, setCars] = useState([]);

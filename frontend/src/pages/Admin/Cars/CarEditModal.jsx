@@ -6,7 +6,7 @@ import {
     faShield,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {deleteCar} from "../../../services/deleteCar.js";
+import {deleteCar} from "../../../services/Cars/deleteCar.js";
 import {uploadImage} from "../../../services/uploadImage.js";
 import {deleteImage} from "../../../services/imageService.js";
 

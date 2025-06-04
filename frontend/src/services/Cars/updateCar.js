@@ -1,6 +1,6 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { UpdateCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
-import { awsConfig } from "../config/awsConfig.js";
+import { awsConfig } from "../../config/awsConfig.js";
 
 const client = new DynamoDBClient(awsConfig);
 const ddbDocClient = DynamoDBDocumentClient.from(client);
