@@ -5,29 +5,6 @@ import {fetchSteps} from "../../services/fetchSteps.js";
 import {fetchTestimonials} from "../../services/Testimonials/fetchTestimonials.js";
 
 function Reviews() {
-    // const reviews = [
-    //     {
-    //         id: 'review-1',
-    //         name: 'Anna Nowak',
-    //         avatar: 'https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-1.jpg',
-    //         rating: 5,
-    //         text: 'Świetna szkoła! Profesjonalni instruktorzy i przyjazna atmosfera. Zdałam za pierwszym razem!',
-    //     },
-    //     {
-    //         id: 'review-2',
-    //         name: 'Marek Kowalczyk',
-    //         avatar: 'https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-4.jpg',
-    //         rating: 5,
-    //         text: 'Bardzo dobra organizacja zajęć, nowoczesne samochody. Polecam!',
-    //     },
-    //     {
-    //         id: 'review-3',
-    //         name: 'Karolina Wiśniewska',
-    //         avatar: 'https://storage.googleapis.com/uxpilot-auth.appspot.com/avatars/avatar-5.jpg',
-    //         rating: 5,
-    //         text: 'Cierpliwi instruktorzy, elastyczne godziny jazd. Super szkoła!',
-    //     },
-    // ];
     const [reviews, setReviews] = useState([])
     useEffect(() => {
         fetchTestimonials()
