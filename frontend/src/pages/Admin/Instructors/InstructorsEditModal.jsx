@@ -3,6 +3,7 @@ import { uploadImage } from "../../../services/uploadImage";
 import { updateInstructor } from "../../../services/Instructors/updateInstructor.js";
 import { deleteInstructor } from "../../../services/Instructors/deleteInstructor.js";
 import {deleteImage} from "../../../services/imageService.js";
+import heic2any from "heic2any";
 
 
 const InstructorsEditModal = ({ instructor, onSave, onClose }) => {
@@ -17,12 +18,31 @@ const InstructorsEditModal = ({ instructor, onSave, onClose }) => {
         const file = e.target.files[0];
         if (!file) return;
 
+        let uploadFile = file;
+
+        // Convert HEIC to JPEG if needed
+        if (file.type === "image/heic" || file.name.toLowerCase().endsWith(".heic")) {
+            try {
+                const convertedBlob = await heic2any({
+                    blob: file,
+                    toType: "image/jpeg",
+                    quality: 0.8,
+                });
+                uploadFile = new File([convertedBlob], file.name.replace(/\.heic$/i, ".jpg"), {
+                    type: "image/jpeg",
+                });
+            } catch (err) {
+                console.error("Błąd konwersji HEIC:", err);
+                alert("Nie udało się przekonwertować pliku .heic. Wybierz inny format.");
+                return;
+            }
+        }
+
         try {
             if (formData.imageSrc) {
                 await deleteImage(formData.imageSrc);
             }
-
-            const imageUrl = await uploadImage(file);
+            const imageUrl = await uploadImage(uploadFile);
             setFormData((prev) => ({ ...prev, imageSrc: imageUrl }));
         } catch (err) {
             console.error("Image upload failed:", err);
@@ -85,6 +105,17 @@ const InstructorsEditModal = ({ instructor, onSave, onClose }) => {
                             value={formData.experience}
                             onChange={handleChange}
                             placeholder="Np. 10 lat nauki jazdy..."
+                            className="w-full border p-2 rounded-lg"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block font-semibold mb-0.5">Numer Wyswietlenia:</label>
+                        <input
+                            name="sort"
+                            value={formData.sort}
+                            onChange={handleChange}
+                            placeholder="Np. 1, 2, 3, ..."
                             className="w-full border p-2 rounded-lg"
                         />
                     </div>

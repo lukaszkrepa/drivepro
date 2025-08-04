@@ -68,6 +68,7 @@ const InstructorsMain = () => {
                             name={instr.name}
                             experience={instr.experience}
                             qualifications={instr.qualifications}
+                            sort={instr.sort}
                             onEdit={() => handleEdit(instr)}
                             onDelete={() => handleEdit(instr)} // triggers modal with delete option
                         />

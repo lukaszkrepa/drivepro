@@ -41,6 +41,7 @@ const CoursesMain = () => {
         setSelectedCourse({
             id: Date.now(),
             title: "",
+            description: "",
             price: "",
             tag: "",
             tagColor: "blue",

@@ -15,7 +15,7 @@ const StepCard = ({ id, stepNumber, title, details }) => {
                     <h3 className="text-2xl font-bold mb-4">{title}</h3>
                     <div className="space-y-3 text-gray-600">
                         {details.map((item, index) => (
-                            <div key={index}>
+                            <div key={index} className={item.highlight ? 'text-blue-800' : ''}>
                                 {item.text && <p>{item.text}</p>}
                                 {item.list && (
                                     <ul className="list-disc ml-6 space-y-2">

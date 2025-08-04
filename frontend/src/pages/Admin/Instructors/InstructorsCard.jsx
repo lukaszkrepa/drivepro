@@ -17,6 +17,7 @@ const InstructorsCard = ({
                              experience,
                              qualifications = [],
                              onEdit,
+                             sort,
                              onDelete,
                          }) => {
     const ICON_MAP = {
@@ -38,33 +39,35 @@ const InstructorsCard = ({
                 <img
                     src={imageSrc}
                     alt={imageAlt || name}
-                    className="w-20 h-20 rounded-full mb-4 border-4 border-white shadow"
+                    className="w-20 h-20 rounded-full mb-4 border-4 border-white shadow object-cover object-center"
                 />
             )}
             <div className="text-xl font-bold mb-1">{name}</div>
             <div className="text-gray-600 mb-2">{experience}</div>
+            <div className="text-gray-600 mb-2">{sort}</div>
+
 
             <ul className="text-gray-700 text-sm text-center mb-3 space-y-1">
 
                 {qualifications.map((q, index) => (
                     <li key={index} className="flex justify-center items-center space-x-2">
-                {typeof q === "object" ? (
-                    <>
-                        <FontAwesomeIcon
-                            icon={faCheck}
-                            className={`mr-2 text-green-500`}
-                        />
-                        <span>{q.text}</span>
+                        {typeof q === "object" ? (
+                            <>
+                                <FontAwesomeIcon
+                                    icon={faCheck}
+                                    className={`mr-2 text-green-500`}
+                                />
+                                <span>{q.text}</span>
                             </>
                         ) : (
-                    <div>
-                        <FontAwesomeIcon
-                            icon={faCheck}
-                            className={`mr-2 text-green-500`}
-                        />
-                        <span>{q}</span>
-                    </div>
-                )}
+                            <div>
+                                <FontAwesomeIcon
+                                    icon={faCheck}
+                                    className={`mr-2 text-green-500`}
+                                />
+                                <span>{q}</span>
+                            </div>
+                        )}
                     </li>
                 ))}
             </ul>

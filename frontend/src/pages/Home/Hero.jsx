@@ -11,7 +11,7 @@ function Hero() {
                         <p className="text-xl mb-8">Profesjonalna szkoła nauki jazdy w Twojej okolicy</p>
                         <div className="flex space-x-4">
                             <a
-                                href="#kursy"
+                                href="/courses"
                                 className="bg-white text-red-600 px-8 py-3 rounded-lg font-bold hover:bg-red-50 transition-colors shadow-md"
                             >
                                 Zobacz kursy

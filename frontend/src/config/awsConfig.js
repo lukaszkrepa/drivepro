@@ -5,4 +5,3 @@ export const awsConfig = {
         secretAccessKey: import.meta.env.VITE_SECRET_ACCESS_KEY_ID || "",
     },
 };
-

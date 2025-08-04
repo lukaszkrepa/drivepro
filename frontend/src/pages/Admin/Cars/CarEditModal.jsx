@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {deleteCar} from "../../../services/Cars/deleteCar.js";
 import {uploadImage} from "../../../services/uploadImage.js";
 import {deleteImage} from "../../../services/imageService.js";
+import heic2any from "heic2any";
 
 // Icon selector options (value === type)
 const ICON_OPTIONS = [
@@ -65,17 +66,40 @@ const CarEditModal = ({ item, onSave, onClose }) => {
         const file = e.target.files[0];
         if (!file) return;
 
+        let uploadFile = file;
+
+        // HEIC conversion
+        if (file.type === "image/heic" || file.name.toLowerCase().endsWith(".heic")) {
+            try {
+                const convertedBlob = await heic2any({
+                    blob: file,
+                    toType: "image/jpeg",
+                    quality: 0.8,
+                });
+                uploadFile = new File([convertedBlob], file.name.replace(/\.heic$/i, ".jpg"), {
+                    type: "image/jpeg",
+                });
+            } catch (err) {
+                console.error("Błąd konwersji HEIC:", err);
+                alert("Nie udało się przekonwertować pliku .heic. Wybierz inny format.");
+                return;
+            }
+        }
+
         try {
             if (formData.imageSrc) {
                 await deleteImage(formData.imageSrc);
             }
-
-            const imageUrl = await uploadImage(file);
+            console.log("aaa")
+            const imageUrl = await uploadImage(uploadFile);
+            console.log(imageUrl)
             setFormData((prev) => ({ ...prev, imageSrc: imageUrl }));
         } catch (err) {
             console.error("Image upload failed:", err);
         }
     };
+
+
 
 
     const handleDelete = async () => {
@@ -112,6 +136,7 @@ const CarEditModal = ({ item, onSave, onClose }) => {
                     />
                     <div>
                         <label className="block font-semibold mb-0.5">Zdjęcie:</label>
+                        <p>{formData.imageSrc}</p>
                         {formData.imageSrc && (
                             <img
                                 src={formData.imageSrc}

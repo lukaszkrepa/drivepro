@@ -5,7 +5,10 @@ const Sidebar = ({ activeTab, onChangeTab }) => {
         { id: 'galeria', label: 'Galeria', icon: 'image' },
         { id: 'faq', label: 'FAQ', icon: 'circle-question' },
         { id: 'testimonials', label: 'Opinie', icon: 'circle-question'},
-        { id: 'cars', label: 'Auta', icon: 'car-side'}
+        { id: 'cars', label: 'Auta', icon: 'car-side'},
+        { id: 'homeSteps', label: 'Jak sie zapisac (strona glowna)', icon: ''},
+        { id: 'steps', label: 'Jak sie zapisac (strona zapisz sie)', icon: ''}
+
     ];
 
     return (

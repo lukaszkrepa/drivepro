@@ -32,7 +32,7 @@ function TeamAndCars() {
                                 <img
                                     src={instructor.imageSrc}
                                     alt={instructor.imageAlt}
-                                    className="w-16 h-16 rounded-full"
+                                    className="w-16 h-16 rounded-full object-cover object-center"
                                 />
                                 <div>
                                     <h4 className="font-bold">{instructor.name}</h4>

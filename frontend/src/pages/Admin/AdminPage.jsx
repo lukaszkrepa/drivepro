@@ -9,11 +9,11 @@ import FaqMain from "./Faq/FaqMain.jsx";
 import {withAuthenticator} from "@aws-amplify/ui-react";
 import TestimonialsMain from "./Testimonials/TestimonialsMain.jsx";
 import CarsMain from "./Cars/CarsMain.jsx";
+import HomeSignUpMain from "./HomeSignUp/HomeSignUpMain.jsx";
+import DrivingCourseStepsMain from "./SignUp/DrivingCourseStepsMain.jsx";
 
 const AdminPage = () => {
     const [tab, setTab] = useState('kursy');
-    console.log(import.meta.env.VITE_ACCESS_KEY_ID || "")
-    console.log(import.meta.env.VITE_SECRET_ACCESS_KEY_ID || "")
     const renderTabContent = () => {
         switch (tab) {
             case 'kursy': return <CoursesMain/>;
@@ -22,6 +22,8 @@ const AdminPage = () => {
             case 'faq': return <FaqMain/>;
             case 'testimonials': return <TestimonialsMain/>
             case 'cars': return <CarsMain/>
+            case 'homeSteps': return <HomeSignUpMain/>
+            case 'steps': return <DrivingCourseStepsMain/>
             default: return null;
         }
     };

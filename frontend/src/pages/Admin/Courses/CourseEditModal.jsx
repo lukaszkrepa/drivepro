@@ -2,9 +2,10 @@ import React, {useEffect, useState} from "react";
 import { updateCourse } from "../../../services/Courses/updateCourse.js";
 import { deleteCourse } from "../../../services/Courses/deleteCourse.js";
 import { uploadImage } from "../../../services/uploadImage";
-import { faCheck, faBolt, faGlobe, faClock, faCar, faRoad } from '@fortawesome/free-solid-svg-icons';
+import {faCheck, faBolt, faGlobe, faClock, faCar, faRoad, faGraduationCap} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {deleteImage} from "../../../services/imageService.js";
+import heic2any from "heic2any";
 
 const ICON_OPTIONS = [
     { name: "check", icon: faCheck, label: "Zaznacz" },
@@ -13,6 +14,7 @@ const ICON_OPTIONS = [
     { name: "clock", icon: faClock, label: "Zegar" },
     { name: "car", icon: faCar, label: "Auto" },
     { name: "road", icon: faRoad, label: "Droga" },
+    { name: "graduationCap", icon: faGraduationCap, label: "Czapka"}
 ];
 
 
@@ -55,12 +57,31 @@ const CourseEditModal = ({ course, onSave, onClose }) => {
         const file = e.target.files[0];
         if (!file) return;
 
+        let uploadFile = file;
+
+        // Convert HEIC to JPEG if needed
+        if (file.type === "image/heic" || file.name.toLowerCase().endsWith(".heic")) {
+            try {
+                const convertedBlob = await heic2any({
+                    blob: file,
+                    toType: "image/jpeg",
+                    quality: 0.8,
+                });
+                uploadFile = new File([convertedBlob], file.name.replace(/\.heic$/i, ".jpg"), {
+                    type: "image/jpeg",
+                });
+            } catch (err) {
+                console.error("Błąd konwersji HEIC:", err);
+                alert("Nie udało się przekonwertować pliku .heic. Wybierz inny format.");
+                return;
+            }
+        }
+
         try {
             if (formData.imageSrc) {
                 await deleteImage(formData.imageSrc);
             }
-
-            const imageUrl = await uploadImage(file);
+            const imageUrl = await uploadImage(uploadFile);
             setFormData((prev) => ({ ...prev, imageSrc: imageUrl }));
         } catch (err) {
             console.error("Image upload failed:", err);
@@ -88,7 +109,7 @@ const CourseEditModal = ({ course, onSave, onClose }) => {
             await updateCourse(formData);
             onSave(formData);
             onClose();
-            window.location.reload()
+            // window.location.reload()
         } catch (err) {
             console.error("DynamoDB update error:", err);
         }
@@ -111,6 +132,7 @@ const CourseEditModal = ({ course, onSave, onClose }) => {
                         placeholder="Tytuł"
                         className="w-full border p-2 rounded-lg"
                     />
+
                     <label className="block font-semibold mb-0.1">Cena:</label>
                     <input
                         name="price"
@@ -119,6 +141,28 @@ const CourseEditModal = ({ course, onSave, onClose }) => {
                         placeholder="Cena"
                         className="w-full border p-2 rounded-lg"
                     />
+                    <label className="block font-semibold mb-0.1">Opis kursu:</label>
+                    <textarea
+                        name="description"
+                        value={formData.description || ""}
+                        onChange={handleChange}
+                        placeholder="Opis kursu"
+                        className="w-full border p-2 rounded-lg"
+                    />
+                    <label className="block font-semibold mb-0.1">Ikona kursu (główna):</label>
+                    <select
+                        name="icon"
+                        value={formData.icon || ""}
+                        onChange={handleChange}
+                        className="w-full border p-2 rounded-lg"
+                    >
+                        <option value="">Wybierz ikonę</option>
+                        {ICON_OPTIONS.map((opt) => (
+                            <option key={opt.name} value={opt.name}>
+                                {opt.label}
+                            </option>
+                        ))}
+                    </select>
                     <label className="block font-semibold mb-0.1">Tag (prawy górny róg):</label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 items-start border p-2 rounded-lg">
                         <input

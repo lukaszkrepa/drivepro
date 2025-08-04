@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { uploadImage, deleteImage } from "../../../services/imageService.js";
 import {deleteGalleryItem} from "../../../services/Gallery/deleteGalleryItem.js";
+import heic2any from "heic2any";
 
 const GalleryEditModal = ({ item, onSave, onClose }) => {
     const [formData, setFormData] = useState({
@@ -30,9 +31,29 @@ const GalleryEditModal = ({ item, onSave, onClose }) => {
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
+
+        let uploadFile = file;
+        // Convert .heic to .jpeg using heic2any
+        if (file.type === "image/heic" || file.name.toLowerCase().endsWith(".heic")) {
+            try {
+                const convertedBlob = await heic2any({
+                    blob: file,
+                    toType: "image/jpeg",
+                    quality: 0.8,
+                });
+                uploadFile = new File([convertedBlob], file.name.replace(/\.heic$/i, ".jpg"), {
+                    type: "image/jpeg",
+                });
+            } catch (err) {
+                console.error("Błąd konwersji HEIC:", err);
+                alert("Nie udało się przekonwertować pliku .heic. Wybierz inny format.");
+                return;
+            }
+        }
+
         try {
             if (formData.src) await deleteImage(formData.src);
-            const imageUrl = await uploadImage(file);
+            const imageUrl = await uploadImage(uploadFile);
             setFormData((prev) => ({ ...prev, src: imageUrl }));
         } catch (err) {
             console.error("Błąd podczas przesyłania obrazu:", err);
