@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar } from '@fortawesome/free-solid-svg-icons';
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {fetchInstructors} from "../../services/Instructors/fetchInstructors.js";
 import {fetchCars} from "../../services/Cars/fetchCars.js";
 
@@ -35,7 +35,14 @@ function TeamAndCars() {
                                     className="w-16 h-16 rounded-full object-cover object-center"
                                 />
                                 <div>
-                                    <h4 className="font-bold">{instructor.name}</h4>
+                                    <div className="font-bold text-base">
+                                        {typeof instructor.name === "string"
+                                            ? instructor.name.split(/<br\s*\/?>/gi).map((line, idx) => (
+                                                <div key={idx}>{line.trim()}</div>
+                                            ))
+                                            : instructor.name}
+                                    </div>
+
                                     <p className="text-gray-600">{instructor.experience}</p>
                                 </div>
                             </div>
@@ -44,7 +51,7 @@ function TeamAndCars() {
                     <div className="space-y-8">
                         <h3 className="text-2xl font-bold mb-6">Nasze Samochody</h3>
                         <div className="grid grid-cols-1 gap-4">
-                            {cars.map((car, index) => (
+                        {cars.map((car, index) => (
                                 <div
                                     key={index}
                                     className="bg-white p-4 rounded-lg flex items-center space-x-4"

@@ -4,7 +4,7 @@ const Hero = () => {
     return (
         <section
             id="page-header"
-            className="pt-32 bg-gradient-to-r from-red-600 to-red-800 h-[400px] flex items-center"
+            className="pt-32 h-[400px] bg-gradient-to-r from-black via-[#7b0000] to-[#c00000] flex items-center"
         >
             <div className="container mx-auto px-4">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">

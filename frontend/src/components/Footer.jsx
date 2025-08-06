@@ -24,7 +24,7 @@ function Footer() {
                             <FontAwesomeIcon icon={faPhone} className="mr-2" /> +48 724 755 755
                         </p>
                         <p className="mb-2">
-                            <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> biuro@drivepro.pl
+                            <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> biurodrivepro@gmail.com
                         </p>
                         <p>
                             <FontAwesomeIcon icon={faLocationDot} className="mr-2" /> ul. Sucha 93A, 66-004 Zielona Góra

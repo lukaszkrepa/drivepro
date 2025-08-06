@@ -13,8 +13,11 @@ export async function updateFaqItem(item) {
             SET
                 question = :question,
                 answer = :answer,
-                list = :list
+                #listAttr = :list
         `,
+        ExpressionAttributeNames: {
+            "#listAttr": "list", // alias for reserved word
+        },
         ExpressionAttributeValues: {
             ":question": item.question || "",
             ":answer": item.answer || "",

@@ -12,7 +12,7 @@ const contactData = [
         id: 'contact-email',
         icon: 'envelope',
         title: 'Napisz do nas',
-        info: 'biuro@drivepro.pl',
+        info: 'biurodrivepro@gmail.com',
     },
 ];
 

@@ -45,42 +45,43 @@ function Header() {
                         <div className="flex items-center space-x-6 mr-10">
                             <a
                                 href={facebookUrl}
-                                className="text-2xl text-red-600 hover:text-red-700 transition-colors"
+                                className="text-2xl text-blue-600 hover:text-blue-700 transition-colors"
                                 aria-label="Facebook"
                             >
-                                <FontAwesomeIcon icon={faFacebook} />
+                                <FontAwesomeIcon icon={faFacebook}/>
                             </a>
                             <a
                                 href={tiktokUrl}
-                                className="text-2xl text-red-600 hover:text-red-700 transition-colors"
+                                className="text-2xl text-black hover:text-gray-800 transition-colors"
                                 aria-label="TikTok"
                             >
-                                <FontAwesomeIcon icon={faTiktok} />
+                                <FontAwesomeIcon icon={faTiktok}/>
                             </a>
                             <a
                                 href={instagramUrl}
-                                className="text-2xl text-red-600 hover:text-red-700 transition-colors"
+                                className="text-2xl text-pink-500 hover:text-pink-600 transition-colors"
                                 aria-label="Instagram"
                             >
-                                <FontAwesomeIcon icon={faInstagram} />
+                                <FontAwesomeIcon icon={faInstagram}/>
                             </a>
                         </div>
-                        <a href="/signup" className="text-gray-700 hover:text-blue-600">
+
+                        <a href="/signup" className="text-gray-700 hover:text-red-600">
                             Jak się zapisać
                         </a>
-                        <a href="/courses" className="text-gray-700 hover:text-blue-600">
+                        <a href="/courses" className="text-gray-700 hover:text-red-600">
                             Kursy
                         </a>
-                        <a href="/instructors" className="text-gray-700 hover:text-blue-600">
+                        <a href="/instructors" className="text-gray-700 hover:text-red-600">
                             Kadra
                         </a>
-                        <a href="/gallery" className="text-gray-700 hover:text-blue-600">
+                        <a href="/gallery" className="text-gray-700 hover:text-red-600">
                             Galeria
                         </a>
-                        <a href="/reviews" className="text-gray-700 hover:text-blue-600">
+                        <a href="/reviews" className="text-gray-700 hover:text-red-600">
                             Opinie
                         </a>
-                        <a href="/faq" className="text-gray-700 hover:text-blue-600">
+                        <a href="/faq" className="text-gray-700 hover:text-red-600">
                             FAQ
                         </a>
                         <a
@@ -92,7 +93,7 @@ function Header() {
                         </a>
                         <a
                             href="https://kalendarz.drivepro.pl"
-                            className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors shadow-md flex items-center"
+                            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors shadow-md flex items-center"
                         >
                             <FaCalendarAlt className="mr-2" />
                             Kalendarz

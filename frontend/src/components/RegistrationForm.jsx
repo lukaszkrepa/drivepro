@@ -7,6 +7,8 @@ const RegistrationForm = ({ preselectedCourse, onClose, english = false }) => {
         email: '',
         phone: '',
         pkk: '',
+        pesel: '',
+        instagram: '',
         courseType: preselectedCourse || '',
     });
 
@@ -17,10 +19,15 @@ const RegistrationForm = ({ preselectedCourse, onClose, english = false }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!formData.pkk) {
-            alert(english ? "PKK number is required." : "Numer PKK jest wymagany.");
+        if (!formData.pkk || formData.pkk.length !== 20) {
+            alert(
+                english
+                    ? "PKK number must be exactly 20 characters."
+                    : "Numer PKK musi mieć dokładnie 20 znaków."
+            );
             return;
         }
+
 
         try {
             const response = await fetch("https://p1iy4vg2i2.execute-api.eu-central-1.amazonaws.com", {
@@ -39,6 +46,8 @@ const RegistrationForm = ({ preselectedCourse, onClose, english = false }) => {
                     email: '',
                     phone: '',
                     pkk: '',
+                    pesel: '',
+                    instagram: '',
                     courseType: preselectedCourse || '',
                 });
                 if (onClose) onClose();
@@ -59,6 +68,27 @@ const RegistrationForm = ({ preselectedCourse, onClose, english = false }) => {
             );
         }
     };
+
+    const isDodatkowe = preselectedCourse?.toUpperCase().includes("DODATKOWE");
+
+    if (isDodatkowe) {
+        return (
+            <div className=" text-black-800 p-6 rounded-lg">
+                <h2 className="text-xl font-bold mb-2">
+                    {english ? "Individual Contact Required" : "Wymagany indywidualny kontakt"}
+                </h2>
+                <p>
+                    {english
+                        ? "This course requires individual arrangements. Please contact us by phone at "
+                        : "Ten kurs wymaga kontaktu telefonicznego. Skontaktuj się z nami telefonicznie pod numerem "}
+                    <a href="tel:+48724755755" className="text-red-600 font-semibold hover:underline">
+                        +48 724 755 755
+                    </a>
+                    .
+                </p>
+            </div>
+        );
+    }
 
     return (
         <form className="space-y-6" onSubmit={handleSubmit}>
@@ -132,17 +162,46 @@ const RegistrationForm = ({ preselectedCourse, onClose, english = false }) => {
                     id="pkk"
                     value={formData.pkk}
                     onChange={handleChange}
+                    maxLength={20}
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
                 />
                 {!english && (
                     <p className="text-sm text-gray-600 mt-2">
                         Nie masz jeszcze PKK?{" "}
-                        <a href="#" className="text-red-600 hover:underline">
+                        <a href="/signup" className="text-red-600 hover:underline">
                             Kliknij tutaj aby dowiedzieć się jak je wyrobić!
                         </a>
                     </p>
                 )}
+            </div>
+
+            <div>
+                <label className="block text-gray-700 mb-2" htmlFor="pesel">
+                    PESEL
+                </label>
+                <input
+                    type="text"
+                    id="pesel"
+                    value={formData.pesel}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                />
+            </div>
+
+            <div>
+                <label className="block text-gray-700 mb-2" htmlFor="instagram">
+                    Instagram ({english ? "optional" : "opcjonalnie"})
+                </label>
+                <input
+                    type="text"
+                    id="instagram"
+                    value={formData.instagram}
+                    onChange={handleChange}
+                    placeholder="@twojnick"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                />
             </div>
 
             <div>

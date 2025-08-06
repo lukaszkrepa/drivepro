@@ -9,9 +9,10 @@ const RegistrationForm = () => {
         email: '',
         phone: '',
         pkk: '',
+        pesel: '',
+        instagram: '',
         courseType: '',
     });
-
 
     useEffect(() => {
         fetchCourses()
@@ -26,9 +27,8 @@ const RegistrationForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Basic validation for PKK
-        if (!formData.pkk) {
-            alert("Numer PKK jest wymagany.");
+        if (!formData.pkk || formData.pkk.length !== 20) {
+            alert("Numer PKK musi mieć dokładnie 20 znaków.");
             return;
         }
 
@@ -49,11 +49,13 @@ const RegistrationForm = () => {
                     email: '',
                     phone: '',
                     pkk: '',
+                    pesel: '',
+                    instagram: '',
                     courseType: '',
                 });
             } else {
-                console.log(result.error)
-                alert("Wystąpił błąd. Spróbuj ponownie później albo do nas zadzwoń!")
+                console.log(result.error);
+                alert("Wystąpił błąd. Spróbuj ponownie później albo do nas zadzwoń!");
             }
         } catch (err) {
             console.error("Request error:", err);
@@ -61,109 +63,148 @@ const RegistrationForm = () => {
         }
     };
 
+    const isDodatkowe = formData.courseType?.toUpperCase().includes("DODATKOWE");
+
     return (
         <section id="registration-form" className="py-20 bg-gray-50">
             <div className="container mx-auto px-4">
                 <div className="max-w-2xl mx-auto">
                     <h2 className="text-3xl font-bold text-center mb-12">Formularz zapisowy</h2>
-                    <div className="bg-white rounded-xl shadow-lg p-8">
-                        <form className="space-y-6" onSubmit={handleSubmit}>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-gray-700 mb-2" htmlFor="firstName">
-                                        Imię
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="firstName"
-                                        value={formData.firstName}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-gray-700 mb-2" htmlFor="lastName">
-                                        Nazwisko
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="lastName"
-                                        value={formData.lastName}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <label className="block text-gray-700 mb-2" htmlFor="email">
-                                    Email
-                                </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700 mb-2" htmlFor="phone">
-                                    Telefon
-                                </label>
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    value={formData.phone}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-gray-700 mb-2" htmlFor="pkk">
-                                    Numer PKK
-                                </label>
-                                <input
-                                    type="text"
-                                    id="pkk"
-                                    value={formData.pkk}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
-                                />
-                                <p className="text-sm text-gray-600 mt-2">
-                                    Nie masz jeszcze PKK? <a href="#" className="text-red-600 hover:underline">Kliknij tutaj aby dowiedzieć się jak je wyrobić!</a>
+                    <div className="bg-white rounded-xl shadow-lg p-8 space-y-6">
+
+                        {/* Course type selector is always visible */}
+                        <div>
+                            <label className="block text-gray-700 mb-2" htmlFor="courseType">Rodzaj kursu</label>
+                            <select
+                                id="courseType"
+                                value={formData.courseType}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                            >
+                                <option value="" disabled>Wybierz kurs</option>
+                                {courses.map((course) => (
+                                    <option key={course.id} value={course.title}>
+                                        {course.title}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {/* Conditional content depending on course type */}
+                        {isDodatkowe ? (
+                            <div className="text-black-800">
+                                <h3 className="text-xl font-bold mb-2">Wymagany indywidualny kontakt</h3>
+                                <p>
+                                    Ten kurs wymaga kontaktu telefonicznego. Skontaktuj się z nami pod numerem{' '}
+                                    <a href="tel:+48724755755" className="text-red-600 font-semibold hover:underline">
+                                        +48 724 755 755
+                                    </a>
+                                    .
                                 </p>
                             </div>
-                            <div>
-                                <label className="block text-gray-700 mb-2" htmlFor="courseType">
-                                    Rodzaj kursu
-                                </label>
-                                <select
-                                    id="courseType"
-                                    value={formData.courseType}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                        ) : (
+                            <form className="space-y-6" onSubmit={handleSubmit}>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label className="block text-gray-700 mb-2" htmlFor="firstName">Imię</label>
+                                        <input
+                                            type="text"
+                                            id="firstName"
+                                            value={formData.firstName}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-gray-700 mb-2" htmlFor="lastName">Nazwisko</label>
+                                        <input
+                                            type="text"
+                                            id="lastName"
+                                            value={formData.lastName}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-gray-700 mb-2" htmlFor="phone">Telefon</label>
+                                    <input
+                                        type="tel"
+                                        id="phone"
+                                        value={formData.phone}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-gray-700 mb-2" htmlFor="pkk">Numer PKK</label>
+                                    <input
+                                        type="text"
+                                        id="pkk"
+                                        value={formData.pkk}
+                                        onChange={handleChange}
+                                        required
+                                        maxLength={20}
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                                    />
+                                    <p className="text-sm text-gray-600 mt-2">
+                                        Nie masz jeszcze PKK?{' '}
+                                        <a href="#" className="text-red-600 hover:underline">
+                                            Kliknij tutaj aby dowiedzieć się jak je wyrobić!
+                                        </a>
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <label className="block text-gray-700 mb-2" htmlFor="pesel">PESEL</label>
+                                    <input
+                                        type="text"
+                                        id="pesel"
+                                        value={formData.pesel}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-gray-700 mb-2" htmlFor="instagram">Instagram</label>
+                                    <input
+                                        type="text"
+                                        id="instagram"
+                                        value={formData.instagram}
+                                        onChange={handleChange}
+                                        placeholder="@twojnick"
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                                    />
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    className="w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition-colors"
                                 >
-                                    <option value="" disabled>Wybierz kurs</option>
-                                    {courses.map((course) => (
-                                        <option key={course.id} value={course.title}>
-                                            {course.title}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                            <button
-                                type="submit"
-                                className="w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition-colors"
-                            >
-                                Zapisz się na kurs
-                            </button>
-                        </form>
+                                    Zapisz się na kurs
+                                </button>
+                            </form>
+                        )}
                     </div>
                 </div>
             </div>

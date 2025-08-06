@@ -2,7 +2,7 @@ import React from 'react';
 
 const GalleryHero = () => {
     return (
-        <section id="gallery-hero" className="pt-20 h-[400px] bg-gradient-to-r from-red-600 to-red-800">
+        <section id="gallery-hero" className="pt-20 h-[400px] bg-gradient-to-r from-black via-[#7b0000] to-[#c00000]">
             <div className="container mx-auto px-4 h-full flex items-center">
                 <div className="text-white">
                     <h1 className="text-5xl font-bold mb-6">Galeria Zdjęć</h1>

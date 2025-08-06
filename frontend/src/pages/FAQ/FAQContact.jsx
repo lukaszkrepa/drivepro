@@ -18,7 +18,7 @@ const FAQContact = () => {
                     Zadzwoń
                 </a>
                 <a
-                    href="mailto:biuro@drivepro.pl"
+                    href="mailto:biurodrivepro@gmail.com"
                     className="flex items-center bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
                 >
                     <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
