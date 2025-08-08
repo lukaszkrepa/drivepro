@@ -85,7 +85,7 @@ function Header() {
                             FAQ
                         </a>
                         <a
-                            href="https://www.superprawojazdy.pl"
+                            href="https://testy.superprawojazdy.pl"
                             className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors shadow-md flex items-center"
                         >
                             <FaGraduationCap className="mr-2" />
@@ -173,7 +173,7 @@ function Header() {
                             FAQ
                         </a>
                         <a
-                            href="https://www.superprawojazdy.pl"
+                            href="https://testy.superprawojazdy.pl"
                             className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors shadow-md flex items-center text-lg"
                             onClick={toggleMobileMenu}
                         >

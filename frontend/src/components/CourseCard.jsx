@@ -44,12 +44,13 @@ const CourseCard = ({
                             <li key={index} className="flex items-center">
                                 <FontAwesomeIcon
                                     icon={iconMap[feature.icon]}
-                                    className={`mr-2 text-${feature.iconColor}-500`}
+                                    className="mr-2 text-red-500"
                                 />
                                 {feature.text}
                             </li>
                         ))}
                     </ul>
+
                     <div className="flex justify-between items-center">
                         <span className={`text-2xl font-bold text-${buttonColor}-600`}>{price}</span>
                         <button

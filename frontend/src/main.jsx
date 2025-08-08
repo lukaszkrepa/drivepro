@@ -1,12 +1,16 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
+import { AuthProvider } from './AuthContext.jsx'; // wherever your context is
+import './index.css';
 import { Amplify } from 'aws-amplify';
+import awsExports from './aws-exports';
 
-createRoot(document.getElementById('root')).render(
-    <StrictMode>
-        <App />
-    </StrictMode>,
+Amplify.configure(awsExports);
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+        <AuthProvider>
+            <App /> {/* 👈 Routing stays inside App.jsx */}
+        </AuthProvider>
+    </React.StrictMode>
 );
-// Amplify.configure(awsExports);

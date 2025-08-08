@@ -27,7 +27,7 @@ function Footer() {
                             <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> biurodrivepro@gmail.com
                         </p>
                         <p>
-                            <FontAwesomeIcon icon={faLocationDot} className="mr-2" /> ul. Sucha 93A, 66-004 Zielona Góra
+                            <FontAwesomeIcon icon={faLocationDot} className="mr-2" /> ul. Sucha 93A, <br/> 66-004 Zielona Góra
                         </p>
                     </div>
                     <div>
