@@ -6,7 +6,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* collapse common desktop grids back to one column */
+  .force-mobile .md\:grid-cols-2,
+  .force-mobile .md\:grid-cols-3,
+  .force-mobile .lg\:grid-cols-2,
+  .force-mobile .lg\:grid-cols-3,
+  .force-mobile .lg\:grid-cols-4 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
 
+  /* stack flex rows */
+  .force-mobile .md\:flex-row { flex-direction: column !important; }
+
+  /* optional: cap page width so it “feels” mobile */
+  .force-mobile body { max-width: 430px; margin: 0 auto; }
+}
 /* Global styles */
 * {
   font-family: 'Inter', sans-serif;
