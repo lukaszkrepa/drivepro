@@ -23,6 +23,14 @@ const Courses = () => {
             .catch(console.error);
     }, []);
 
+
+    console.log({
+        innerWidth: window.innerWidth,                // layout viewport width (what Tailwind uses)
+        visualViewport: window.visualViewport?.width, // visual viewport width
+        dpr: window.devicePixelRatio,
+        metas: [...document.querySelectorAll('meta[name=viewport]')].map(m=>m.content)
+    });
+
     return (
         <section className="py-20 bg-gray-50">
             <div className="container mx-auto px-4">

@@ -10,7 +10,7 @@ Amplify.configure(awsExports);
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <AuthProvider>
-            <App /> {/* 👈 Routing stays inside App.jsx */}
+            <App />
         </AuthProvider>
     </React.StrictMode>
 );
