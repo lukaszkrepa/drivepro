@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
       (function () {
-        var isTouch = matchMedia('(hover: none) and (pointer: coarse)').matches;
-        var deviceCssW = Math.min(screen.width, screen.height);
-        var desktopLayout = window.innerWidth >= 970;
-        if (isTouch && desktopLayout && deviceCssW <= 480) {
+        var isPhone = /Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(
+          navigator.userAgent
+        );
+        if (isPhone) {
           document.documentElement.classList.add('force-mobile');
         }
       })();

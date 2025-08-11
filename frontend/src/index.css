@@ -7,20 +7,23 @@
 @tailwind utilities;
 
 @layer utilities {
-  /* collapse common desktop grids back to one column */
-  .force-mobile .md\:grid-cols-2,
-  .force-mobile .md\:grid-cols-3,
-  .force-mobile .lg\:grid-cols-2,
-  .force-mobile .lg\:grid-cols-3,
-  .force-mobile .lg\:grid-cols-4 {
+  /* collapse any desktop grids back to one column */
+  .force-mobile [class*="md\\:grid-cols-"],
+  .force-mobile [class*="lg\\:grid-cols-"] {
     grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
   }
 
-  /* stack flex rows */
-  .force-mobile .md\:flex-row { flex-direction: column !important; }
+  /* stack any flex rows */
+  .force-mobile [class*="md\\:flex-row"],
+  .force-mobile [class*="lg\\:flex-row"] {
+    flex-direction: column !important;
+  }
 
-  /* optional: cap page width so it “feels” mobile */
-  .force-mobile body { max-width: 430px; margin: 0 auto; }
+  /* hide desktop-only flex containers */
+  .force-mobile [class*="md\\:flex"],
+  .force-mobile [class*="lg\\:flex"] {
+    display: none !important;
+  }
 }
 /* Global styles */
 * {
