@@ -6,12 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script>
       (function () {
+        function stripResponsiveClasses() {
+          var nodes = document.querySelectorAll(
+            '[class*="md:"],[class*="lg:"]'
+          );
+          nodes.forEach(function (node) {
+            node.className = node.className
+              .split(/\s+/)
+              .filter(function (c) {
+                return !/^md:/.test(c) && !/^lg:/.test(c);
+              })
+              .join(' ');
+          });
+        }
+
+        function applyForceMobile() {
+          document.documentElement.classList.add('force-mobile');
+          stripResponsiveClasses();
+        }
+
         var isPhone = /Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(
           navigator.userAgent
         );
         if (isPhone) {
-          document.documentElement.classList.add('force-mobile');
+          applyForceMobile();
         }
+
+        new MutationObserver(function (mutations) {
+          if (document.documentElement.classList.contains('force-mobile')) {
+            stripResponsiveClasses();
+          }
+        }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+        window.applyForceMobile = applyForceMobile;
       })();
     </script>
     <title>DRIVE PRO</title>

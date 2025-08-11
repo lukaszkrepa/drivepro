@@ -6,25 +6,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  /* collapse any desktop grids back to one column */
-  .force-mobile [class*="md\\:grid-cols-"],
-  .force-mobile [class*="lg\\:grid-cols-"] {
-    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-  }
-
-  /* stack any flex rows */
-  .force-mobile [class*="md\\:flex-row"],
-  .force-mobile [class*="lg\\:flex-row"] {
-    flex-direction: column !important;
-  }
-
-  /* hide desktop-only flex containers */
-  .force-mobile [class*="md\\:flex"],
-  .force-mobile [class*="lg\\:flex"] {
-    display: none !important;
-  }
-}
+/* utilities intentionally left empty */
 /* Global styles */
 * {
   font-family: 'Inter', sans-serif;
