@@ -13,6 +13,7 @@ const RegistrationForm = () => {
         instagram: '',
         courseType: '',
     });
+    const [showSuccess, setShowSuccess] = useState(false);
 
     useEffect(() => {
         fetchCourses()
@@ -42,7 +43,7 @@ const RegistrationForm = () => {
             const result = await response.json();
 
             if (response.ok) {
-                alert("Wkrótce się z tobą skontaktujemy!");
+                setShowSuccess(true);
                 setFormData({
                     firstName: '',
                     lastName: '',
@@ -71,6 +72,7 @@ const RegistrationForm = () => {
                 <div className="max-w-2xl mx-auto">
                     <h2 className="text-3xl font-bold text-center mb-12">Formularz zapisowy</h2>
                     <div className="bg-white rounded-xl shadow-lg p-8 space-y-6">
+                        <>
 
                         {/* Course type selector is always visible */}
                         <div>
@@ -205,9 +207,42 @@ const RegistrationForm = () => {
                                 </button>
                             </form>
                         )}
+                        </>
                     </div>
                 </div>
             </div>
+            {showSuccess && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full p-6 relative mx-4">
+                        <button
+                            className="absolute top-3 right-5 text-gray-500 hover:text-gray-800 text-2xl font-bold"
+                            onClick={() => setShowSuccess(false)}
+                            aria-label="Zamknij"
+                        >
+                            &times;
+                        </button>
+                        <div className="text-center">
+                            <h3 className="text-2xl font-extrabold mb-2">DRIVE PRO</h3>
+                            <p className="text-lg font-semibold mb-4">Dziękujemy za zaufanie !</p>
+                            <ul className="space-y-2 text-left">
+                                <li>+ w ciągu 48h na mail otrzymasz umowę ( podpisz, zeskanuj, odeślij)</li>
+                                <li>+ w ciągu 48h otrzymasz wiadomość SMS  " CCDAd" z kodami umożliwiającymi rozpoczęcie nauki on-line. Możesz się też zalogować na Naszej stronie w zakładce " TEORIA ON LINE"</li>
+                                <li>+ na FB do znajomych dodaj Grzegorza Krępa, który udostępni Tobie dostęp na FB do " grupy zamkniętej sDrive Pro"</li>
+                                <li>+ w ciagu 7 dni skontaktujemy się z Tobą telefonicznie  i ustalimy szczegóły rozpoczęcia szkolenia</li>
+                                <li>+ jeśli masz pytania DZWOŃ!!!  jesteśmy do Twojej dyspozycji</li>
+                            </ul>
+                            <div className="mt-6">
+                                <button
+                                    onClick={() => setShowSuccess(false)}
+                                    className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700"
+                                >
+                                    Zamknij
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 };
