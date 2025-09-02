@@ -45,6 +45,8 @@ function Header() {
                         <div className="flex items-center space-x-6 mr-10">
                             <a
                                 href={facebookUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="text-2xl text-blue-600 hover:text-blue-700 transition-colors"
                                 aria-label="Facebook"
                             >
@@ -52,6 +54,8 @@ function Header() {
                             </a>
                             <a
                                 href={tiktokUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="text-2xl text-black hover:text-gray-800 transition-colors"
                                 aria-label="TikTok"
                             >
@@ -59,6 +63,8 @@ function Header() {
                             </a>
                             <a
                                 href={instagramUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="text-2xl text-pink-500 hover:text-pink-600 transition-colors"
                                 aria-label="Instagram"
                             >
@@ -110,6 +116,8 @@ function Header() {
                         <div className="flex space-x-6">
                             <a
                                 href={facebookUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="text-2xl text-red-600 hover:text-red-700 transition-colors"
                                 aria-label="Facebook"
                             >
@@ -117,6 +125,8 @@ function Header() {
                             </a>
                             <a
                                 href={tiktokUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="text-2xl text-red-600 hover:text-red-700 transition-colors"
                                 aria-label="TikTok"
                             >
@@ -124,6 +134,8 @@ function Header() {
                             </a>
                             <a
                                 href={instagramUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="text-2xl text-red-600 hover:text-red-700 transition-colors"
                                 aria-label="Instagram"
                             >
