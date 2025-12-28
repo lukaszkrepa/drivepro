@@ -14,6 +14,7 @@ import TestimonialsMain from "./Testimonials/TestimonialsMain.jsx";
 import CarsMain from "./Cars/CarsMain.jsx";
 import HomeSignUpMain from "./HomeSignUp/HomeSignUpMain.jsx";
 import DrivingCourseStepsMain from "./SignUp/DrivingCourseStepsMain.jsx";
+import DocumentsMain from "./Documents/DocumentsMain.jsx";
 
 const AdminPage = () => {
     const [tab, setTab] = useState('kursy');
@@ -42,6 +43,7 @@ const AdminPage = () => {
             case 'cars': return <CarsMain />;
             case 'homeSteps': return <HomeSignUpMain />;
             case 'steps': return <DrivingCourseStepsMain />;
+            case 'documents': return <DocumentsMain />;
             default: return null;
         }
     };

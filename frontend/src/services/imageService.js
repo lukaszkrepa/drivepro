@@ -22,6 +22,22 @@ export async function uploadImage(file) {
     return `https://${BUCKET_NAME}.s3.${awsConfig.region}.amazonaws.com/${fileName}`;
 }
 
+export async function uploadDocument(file) {
+    const fileName = `documents/${uuidv4()}-${file.name}`;
+    const fileBuffer = await file.arrayBuffer();
+
+    const command = new PutObjectCommand({
+        Bucket: BUCKET_NAME,
+        Key: fileName,
+        Body: fileBuffer,
+        ContentType: file.type,
+    });
+
+    await s3.send(command);
+
+    return `https://${BUCKET_NAME}.s3.${awsConfig.region}.amazonaws.com/${fileName}`;
+}
+
 // ✅ Delete image from S3
 export async function deleteImage(imageUrl) {
     const key = extractKeyFromUrl(imageUrl);
@@ -52,3 +68,7 @@ function extractKeyFromUrl(url) {
     }
 }
 
+// ✅ Delete document (alias of deleteImage)
+export async function deleteDocument(documentUrl) {
+    return deleteImage(documentUrl);
+}

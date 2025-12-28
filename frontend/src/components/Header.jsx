@@ -90,6 +90,9 @@ function Header() {
                         <a href="/faq" className="text-gray-700 hover:text-red-600">
                             FAQ
                         </a>
+                        <a href="/documents" className="text-gray-700 hover:text-red-600">
+                            Dokumenty
+                        </a>
                         <a
                             href="https://testy.superprawojazdy.pl"
                             className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors shadow-md flex items-center"
@@ -183,6 +186,13 @@ function Header() {
                             onClick={toggleMobileMenu}
                         >
                             FAQ
+                        </a>
+                        <a
+                            href="/documents"
+                            className="text-gray-700 hover:text-blue-600 text-lg"
+                            onClick={toggleMobileMenu}
+                        >
+                            Dokumenty
                         </a>
                         <a
                             href="https://testy.superprawojazdy.pl"

@@ -13,6 +13,7 @@ import Signup from './pages/Signup/Singup.jsx';
 import FAQ from './pages/FAQ/FAQ.jsx';
 import Login from './pages/login.jsx';
 import AdminPanel from './pages/Admin/AdminPage.jsx';
+import Documents from './pages/Documents/Documents.jsx';
 
 function App() {
     return (
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/courses" element={<Courses />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/faq" element={<FAQ />} />
+                <Route path="/documents" element={<Documents />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/admin" element={<AdminPanel />} />
             </Routes>
