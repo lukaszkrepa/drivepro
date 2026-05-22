@@ -4,16 +4,18 @@ backend:
     preBuild:
       commands:
         - npm install
-        - cd amplify && npm install
+        - cd amplify
+        - npm install
     build:
       commands:
         - export CI=1
-        - if [ "$AWS_BRANCH" = "dev" ]; then cd amplify && ../node_modules/.bin/ampx pipeline-deploy --branch "$AWS_BRANCH" --app-id "$AWS_APP_ID" --outputs-out-dir ..; else echo "Skipping backend deploy for branch $AWS_BRANCH"; fi
-        - cd amplify && ../node_modules/.bin/ampx generate outputs --branch "$AWS_BRANCH" --app-id "$AWS_APP_ID" --out-dir ..
+        - if [ "$AWS_BRANCH" = "dev" ]; then ../node_modules/.bin/ampx pipeline-deploy --branch "$AWS_BRANCH" --app-id "$AWS_APP_ID" --outputs-out-dir ..; else echo "Skipping backend deploy for branch $AWS_BRANCH"; fi
+        - ../node_modules/.bin/ampx generate outputs --branch "$AWS_BRANCH" --app-id "$AWS_APP_ID" --out-dir ..
 frontend:
   phases:
     preBuild:
       commands:
+        - cd ..
         - cd frontend
         - npm ci
     build:
