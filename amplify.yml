@@ -8,14 +8,14 @@ backend:
         - npm install
     build:
       commands:
+        - cd ..
         - export CI=1
-        - if [ "$AWS_BRANCH" = "dev" ]; then npx ampx pipeline-deploy --branch "$AWS_BRANCH" --app-id "$AWS_APP_ID" --outputs-out-dir ..; else echo "Skipping backend deploy for branch $AWS_BRANCH"; fi
-        - npx ampx generate outputs --branch "$AWS_BRANCH" --app-id "$AWS_APP_ID" --out-dir ..
+        - if [ "$AWS_BRANCH" = "dev" ]; then npx ampx pipeline-deploy --branch "$AWS_BRANCH" --app-id "$AWS_APP_ID" --outputs-out-dir .; else echo "Skipping backend deploy for branch $AWS_BRANCH"; fi
+        - npx ampx generate outputs --branch "$AWS_BRANCH" --app-id "$AWS_APP_ID" --out-dir .
 frontend:
   phases:
     preBuild:
       commands:
-        - cd ..
         - cd frontend
         - npm ci
     build:
