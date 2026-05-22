@@ -26,3 +26,8 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+.kiro/
+.vscode/
+AWSCLIV2.pkg
+scripts/

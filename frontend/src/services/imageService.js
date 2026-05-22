@@ -1,74 +1,60 @@
-import { S3Client, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
-import { awsConfig } from "../config/awsConfig";
-import { v4 as uuidv4 } from "uuid";
+import { apiClient } from "./apiClient.js";
 
-const s3 = new S3Client(awsConfig);
-const BUCKET_NAME = "driveprophotos";
-
-// ✅ Upload image to S3
+// Upload image to backend API
 export async function uploadImage(file) {
-    const fileName = `uploads/${uuidv4()}-${file.name}`;
-    const fileBuffer = await file.arrayBuffer(); // Required in browser environments
+    const base64 = await fileToBase64(file);
 
-    const command = new PutObjectCommand({
-        Bucket: BUCKET_NAME,
-        Key: fileName,
-        Body: fileBuffer,
-        ContentType: file.type,
+    const response = await apiClient.post('/files', {
+        fileName: file.name,
+        fileType: 'image',
+        contentType: file.type,
+        body: base64,
     });
 
-    await s3.send(command);
-
-    return `https://${BUCKET_NAME}.s3.${awsConfig.region}.amazonaws.com/${fileName}`;
+    return response.data.url;
 }
 
+// Upload document to backend API
 export async function uploadDocument(file) {
-    const fileName = `documents/${uuidv4()}-${file.name}`;
-    const fileBuffer = await file.arrayBuffer();
+    const base64 = await fileToBase64(file);
 
-    const command = new PutObjectCommand({
-        Bucket: BUCKET_NAME,
-        Key: fileName,
-        Body: fileBuffer,
-        ContentType: file.type,
+    const response = await apiClient.post('/files', {
+        fileName: file.name,
+        fileType: 'document',
+        contentType: file.type,
+        body: base64,
     });
 
-    await s3.send(command);
-
-    return `https://${BUCKET_NAME}.s3.${awsConfig.region}.amazonaws.com/${fileName}`;
+    return response.data.url;
 }
 
-// ✅ Delete image from S3
+// Delete image via backend API
 export async function deleteImage(imageUrl) {
-    const key = extractKeyFromUrl(imageUrl);
-    if (!key) return;
-
-    const command = new DeleteObjectCommand({
-        Bucket: BUCKET_NAME,
-        Key: key,
-    });
+    if (!imageUrl) return;
 
     try {
-        await s3.send(command);
+        await apiClient.del('/files', { url: imageUrl });
         console.log("Image deleted successfully");
     } catch (error) {
-        console.error("Failed to delete image from S3:", error);
+        console.error("Failed to delete image:", error);
     }
 }
 
-// 🔧 Helper to extract object key from full image URL
-function extractKeyFromUrl(url) {
-    try {
-        const parsed = new URL(url);
-        const key = decodeURIComponent(parsed.pathname).replace(/^\/+/, ""); // removes leading slash
-        return key;
-    } catch (err) {
-        console.error("Invalid image URL:", url);
-        return null;
-    }
-}
-
-// ✅ Delete document (alias of deleteImage)
+// Delete document (alias of deleteImage)
 export async function deleteDocument(documentUrl) {
     return deleteImage(documentUrl);
+}
+
+// Helper to convert a File to base64 string
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            // Remove the data URL prefix (e.g., "data:image/jpeg;base64,")
+            const base64 = reader.result.split(',')[1];
+            resolve(base64);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
 }

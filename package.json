@@ -1,0 +1,24 @@
+{
+  "name": "drivepro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create-admin-user": "node scripts/create-admin-user.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukaszkrepa/drivepro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukaszkrepa/drivepro/issues"
+  },
+  "homepage": "https://github.com/lukaszkrepa/drivepro#readme",
+  "devDependencies": {
+    "@aws-amplify/backend-cli": "^1.8.2"
+  }
+}

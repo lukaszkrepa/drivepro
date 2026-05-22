@@ -1,16 +1,6 @@
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { DeleteCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
-import { awsConfig } from "../../config/awsConfig.js";
+import { apiClient } from "../apiClient.js";
 
-const client = new DynamoDBClient(awsConfig);
-const ddbDocClient = DynamoDBDocumentClient.from(client);
-
-export async function deleteDocument(title) {
-  const command = new DeleteCommand({
-    TableName: "documents",
-    Key: { title },
-  });
-
-  await ddbDocClient.send(command);
+export async function deleteDocument(id) {
+    const response = await apiClient.del('/tables/documents', { id });
+    return response.data;
 }
-

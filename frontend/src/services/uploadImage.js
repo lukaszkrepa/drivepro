@@ -1,23 +1,28 @@
-// services/uploadImage.js
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-import { awsConfig } from "../config/awsConfig";
-import { v4 as uuidv4 } from "uuid";
+import { apiClient } from "./apiClient.js";
 
-const s3 = new S3Client(awsConfig);
-const BUCKET_NAME = "driveprophotos";
+// Helper to convert a File to base64 string
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            // Remove the data URL prefix (e.g., "data:image/jpeg;base64,")
+            const base64 = reader.result.split(',')[1];
+            resolve(base64);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
+}
 
 export async function uploadImage(file) {
-    const fileName = `${uuidv4()}-${file.name}`;
-    const fileBuffer = await file.arrayBuffer(); // Convert to ArrayBuffer to avoid streaming error
+    const base64 = await fileToBase64(file);
 
-    const command = new PutObjectCommand({
-        Bucket: BUCKET_NAME,
-        Key: fileName,
-        Body: fileBuffer,
-        ContentType: file.type,
+    const response = await apiClient.post('/files', {
+        fileName: file.name,
+        fileType: 'image',
+        contentType: file.type,
+        body: base64,
     });
 
-    await s3.send(command);
-
-    return `https://${BUCKET_NAME}.s3.${awsConfig.region}.amazonaws.com/${fileName}`;
+    return response.data.url;
 }

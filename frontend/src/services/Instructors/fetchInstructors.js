@@ -1,15 +1,6 @@
-import {DynamoDBClient} from "@aws-sdk/client-dynamodb";
-import {DynamoDBDocumentClient, ScanCommand,} from "@aws-sdk/lib-dynamodb";
-import {awsConfig} from "../../config/awsConfig.js";
-
-const client = new DynamoDBClient(awsConfig);
-const ddbDocClient = DynamoDBDocumentClient.from(client);
+import { apiClient } from "../apiClient.js";
 
 export async function fetchInstructors() {
-    const command = new ScanCommand({
-        TableName: "Instructors",
-    });
-
-    const response = await ddbDocClient.send(command);
-    return response.Items.sort((a, b) => a.sort - b.sort);
+    const response = await apiClient.get('/tables/Instructors');
+    return response.data;
 }

@@ -51,7 +51,7 @@ const DocumentsMain = () => {
         await addDocument(doc);
         setDocuments((prev) => [...prev, doc]);
       } else {
-        await updateDocument(originalTitle, doc);
+        await updateDocument(doc);
         setDocuments((prev) => prev.map((d) => (d.title === originalTitle ? doc : d)));
       }
       setSelectedItem(null);

@@ -1,9 +1,4 @@
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { PutCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
-import { awsConfig } from "../../config/awsConfig.js";
-
-const client = new DynamoDBClient(awsConfig);
-const ddbDocClient = DynamoDBDocumentClient.from(client);
+import { apiClient } from "../apiClient.js";
 
 export async function addCar(item) {
     const formatted = {
@@ -12,10 +7,6 @@ export async function addCar(item) {
         imageSrc: item.imageSrc || ""
     };
 
-    const command = new PutCommand({
-        TableName: "Cars",
-        Item: formatted,
-    });
-
-    await ddbDocClient.send(command);
+    const response = await apiClient.post('/tables/Cars', formatted);
+    return response.data;
 }

@@ -1,29 +1,6 @@
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-import { UpdateCommand, DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
-import { awsConfig } from "../../config/awsConfig.js";
-
-const client = new DynamoDBClient(awsConfig);
-const ddbDocClient = DynamoDBDocumentClient.from(client);
+import { apiClient } from "../apiClient.js";
 
 export async function updateFaqItem(item) {
-    const command = new UpdateCommand({
-        TableName: "FAQ",
-        Key: { Id: item.Id },
-        UpdateExpression: `
-            SET
-                question = :question,
-                answer = :answer,
-                #listAttr = :list
-        `,
-        ExpressionAttributeNames: {
-            "#listAttr": "list", // alias for reserved word
-        },
-        ExpressionAttributeValues: {
-            ":question": item.question || "",
-            ":answer": item.answer || "",
-            ":list": item.list || [],
-        },
-    });
-
-    await ddbDocClient.send(command);
+    const response = await apiClient.put('/tables/FAQ', item);
+    return response.data;
 }
