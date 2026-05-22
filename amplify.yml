@@ -4,7 +4,7 @@ backend:
     preBuild:
       commands:
         - npm install
-        - cd amplify && npm ci
+        - cd amplify && npm install
     build:
       commands:
         - export CI=1
