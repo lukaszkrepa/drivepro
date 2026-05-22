@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "sync-frontend-config": "node scripts/sync-frontend-config.mjs",
     "test": "echo \"Error: no test specified\" && exit 1",
     "create-admin-user": "node scripts/create-admin-user.mjs"
   },

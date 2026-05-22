@@ -1,6 +1,7 @@
 import { fetchAuthSession } from 'aws-amplify/auth';
+import { apiBaseUrl } from '../amplify-config';
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = apiBaseUrl;
 
 async function getAuthToken() {
   const session = await fetchAuthSession();
