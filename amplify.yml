@@ -3,7 +3,7 @@ backend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - npm install
     build:
       commands:
         - export CI=1
