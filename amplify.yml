@@ -1,4 +1,14 @@
 version: 1
+backend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - export CI=1
+        - if [ "$AWS_BRANCH" = "dev" ]; then npx ampx pipeline-deploy --branch "$AWS_BRANCH" --app-id "$AWS_APP_ID"; else echo "Skipping backend deploy for branch $AWS_BRANCH"; fi
+        - npx ampx generate outputs --branch "$AWS_BRANCH" --app-id "$AWS_APP_ID" --out-dir .
 frontend:
   phases:
     preBuild:
@@ -14,4 +24,5 @@ frontend:
       - '**/*'
   cache:
     paths:
+      - node_modules/**/*
       - frontend/node_modules/**/*
