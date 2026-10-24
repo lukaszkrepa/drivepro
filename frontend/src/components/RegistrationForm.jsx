@@ -52,8 +52,8 @@ const RegistrationForm = ({ preselectedCourse, onClose, english = false }) => {
                     console.error("Contract generation failed:", contractErr);
                     alert(
                         english
-                            ? "You're signed up! We couldn't send the contract automatically, but our team will follow up by email."
-                            : "Zapis przebiegł pomyślnie! Nie udało się automatycznie wysłać umowy, ale skontaktujemy się z Tobą mailowo."
+                            ? "You're signed up! We couldn't send the contract automatically. Please call us at +48 724 755 755."
+                            : "Zapis przebiegł pomyślnie! Nie udało się automatycznie wysłać umowy. Zadzwoń do nas pod numer +48 724 755 755."
                     );
                 }
 

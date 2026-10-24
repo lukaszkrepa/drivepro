@@ -53,7 +53,7 @@ const RegistrationForm = () => {
                     await generateContract(formData);
                 } catch (contractErr) {
                     console.error("Contract generation failed:", contractErr);
-                    alert("Zapis przebiegł pomyślnie! Nie udało się automatycznie wysłać umowy, ale skontaktujemy się z Tobą mailowo.");
+                    alert("Zapis przebiegł pomyślnie! Nie udało się automatycznie wysłać umowy. Zadzwoń do nas pod numer +48 724 755 755.");
                 }
 
                 setFormData({
