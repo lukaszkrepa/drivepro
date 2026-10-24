@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchCourses } from "../../services/Courses/fetchCourses.js";
+import { generateContract } from "../../services/Signup/generateContract.js";
 
 const RegistrationForm = () => {
     const [courses, setCourses] = useState([]);
@@ -44,6 +45,17 @@ const RegistrationForm = () => {
 
             if (response.ok) {
                 setShowSuccess(true);
+
+                // Ask the backend to generate and email the contract. This is a
+                // non-blocking step: the signup already succeeded, so a failure
+                // here must not undo it or prevent the success dialog.
+                try {
+                    await generateContract(formData);
+                } catch (contractErr) {
+                    console.error("Contract generation failed:", contractErr);
+                    alert("Zapis przebiegł pomyślnie! Nie udało się automatycznie wysłać umowy. Zadzwoń do nas pod numer +48 724 755 755.");
+                }
+
                 setFormData({
                     firstName: '',
                     lastName: '',
@@ -56,11 +68,11 @@ const RegistrationForm = () => {
                 });
             } else {
                 console.log(result.error);
-                alert("Wystąpił błąd. Spróbuj ponownie później albo do nas zadzwoń!");
+                alert("Zapis nie powiódł się. Zadzwoń do nas pod numer +48 724 755 755.");
             }
         } catch (err) {
             console.error("Request error:", err);
-            alert("Wystąpił błąd podczas wysyłania formularza.");
+            alert("Zapis nie powiódł się. Zadzwoń do nas pod numer +48 724 755 755.");
         }
     };
 

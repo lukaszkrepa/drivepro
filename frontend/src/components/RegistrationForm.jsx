@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { generateContract } from '../services/Signup/generateContract.js';
 
 const RegistrationForm = ({ preselectedCourse, onClose, english = false }) => {
     const [formData, setFormData] = useState({
@@ -41,6 +42,21 @@ const RegistrationForm = ({ preselectedCourse, onClose, english = false }) => {
 
             if (response.ok) {
                 setShowSuccess(true);
+
+                // Ask the backend to generate and email the contract. This is a
+                // non-blocking step: the signup already succeeded, so a failure
+                // here must not undo it or prevent the success dialog.
+                try {
+                    await generateContract(formData);
+                } catch (contractErr) {
+                    console.error("Contract generation failed:", contractErr);
+                    alert(
+                        english
+                            ? "You're signed up! We couldn't send the contract automatically. Please call us at +48 724 755 755."
+                            : "Zapis przebiegł pomyślnie! Nie udało się automatycznie wysłać umowy. Zadzwoń do nas pod numer +48 724 755 755."
+                    );
+                }
+
                 setFormData({
                     firstName: '',
                     lastName: '',
@@ -55,16 +71,16 @@ const RegistrationForm = ({ preselectedCourse, onClose, english = false }) => {
                 console.error(result.error);
                 alert(
                     english
-                        ? "Unexpected error occurred. Try again later or give us a call!"
-                        : "Wystąpił błąd. Spróbuj ponownie później albo do nas zadzwoń!"
+                        ? "Signup was unsuccessful. Please call us at +48 724 755 755."
+                        : "Zapis nie powiódł się. Zadzwoń do nas pod numer +48 724 755 755."
                 );
             }
         } catch (err) {
             console.error("Request error:", err);
             alert(
                 english
-                    ? "An error occurred while sending the form."
-                    : "Wystąpił błąd podczas wysyłania formularza."
+                    ? "Signup was unsuccessful. Please call us at +48 724 755 755."
+                    : "Zapis nie powiódł się. Zadzwoń do nas pod numer +48 724 755 755."
             );
         }
     };
