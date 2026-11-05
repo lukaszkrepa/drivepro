@@ -58,6 +58,21 @@ export async function generateGroup(year, group) {
   return res.json();
 }
 
+/** Trigger an async re-sync of a year's roster from the sheet; returns 202 body. */
+export async function refreshData(year) {
+  ensureConfigured();
+  const headers = await authHeader();
+  const res = await fetch(`${BASE_URL}/documents/${year}/refresh`, {
+    method: 'POST',
+    headers,
+  });
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.error || `Refresh failed (${res.status})`);
+  }
+  return res.json();
+}
+
 /** Start generate-all; returns { job_id, status }. */
 export async function startGenerateAll(year) {
   ensureConfigured();

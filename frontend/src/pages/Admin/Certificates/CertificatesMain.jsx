@@ -5,6 +5,7 @@ import {
   generateGroup,
   startGenerateAll,
   fetchJobStatus,
+  refreshData,
 } from '../../../services/Certificates/certClient.js';
 
 const currentYear = new Date().getFullYear().toString();
@@ -54,6 +55,31 @@ const CertificatesMain = () => {
       setCustomers([]);
     } finally {
       setLoadingRoster(false);
+    }
+  };
+
+  const handleRefresh = async () => {
+    setError('');
+    setSkipped([]);
+    setBusy('refresh');
+    setStatus('Odświeżanie danych z arkusza...');
+    try {
+      await refreshData(year);
+      // The sync runs async server-side; wait, then reload the roster.
+      setTimeout(async () => {
+        try {
+          const data = await fetchRoster(year);
+          setCustomers(data.customers || []);
+          setStatus(`Odświeżono. Załadowano ${data.count} kursantów (${year}).`);
+        } catch (e) {
+          setError(e.message);
+        } finally {
+          setBusy('');
+        }
+      }, 20000);
+    } catch (e) {
+      setError(e.message);
+      setBusy('');
     }
   };
 
@@ -155,6 +181,14 @@ const CertificatesMain = () => {
             className="px-5 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50"
           >
             {loadingRoster ? 'Ładowanie...' : 'Załaduj listę'}
+          </button>
+          <button
+            onClick={handleRefresh}
+            disabled={busy === 'refresh'}
+            title="Pobiera najnowsze dane z arkusza Google"
+            className="px-5 py-2 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700 transition disabled:opacity-50"
+          >
+            {busy === 'refresh' ? 'Odświeżanie...' : 'Odśwież dane'}
           </button>
 
           <div className="flex items-end gap-2">
