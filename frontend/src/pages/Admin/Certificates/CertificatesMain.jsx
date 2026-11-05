@@ -38,6 +38,7 @@ const CertificatesMain = () => {
   const [loadingRoster, setLoadingRoster] = useState(false);
   const [busy, setBusy] = useState('');       // id/label of in-flight action
   const [error, setError] = useState('');
+  const [skipped, setSkipped] = useState([]); // rows skipped during generation
   const [status, setStatus] = useState('');
 
   const loadRoster = async () => {
@@ -73,10 +74,17 @@ const CertificatesMain = () => {
     if (!groupValue.trim()) return;
     setError('');
     setStatus('');
+    setSkipped([]);
     setBusy('group');
     try {
       const res = await generateGroup(year, groupValue.trim());
-      setStatus(`Grupa ${groupValue}: ${res.pages} zaświadczeń. Pobieranie...`);
+      const skippedCount = res.skipped_count || 0;
+      setStatus(
+        `Grupa ${groupValue}: wygenerowano ${res.pages} zaświadczeń` +
+        (skippedCount ? `, pominięto ${skippedCount}.` : '.') +
+        ' Pobieranie...'
+      );
+      setSkipped(res.skipped || []);
       openUrl(res.download_url);
     } catch (e) {
       setError(e.message);
@@ -88,6 +96,7 @@ const CertificatesMain = () => {
   const handleGenerateAll = async () => {
     setError('');
     setStatus('');
+    setSkipped([]);
     setBusy('all');
     try {
       const { job_id } = await startGenerateAll(year);
@@ -97,6 +106,7 @@ const CertificatesMain = () => {
         const s = await fetchJobStatus(job_id);
         if (s.status === 'DONE') {
           setStatus(`Gotowe: ${s.generated} wygenerowano, ${s.skipped} pominięto. Pobieranie...`);
+          setSkipped(s.skipped_rows || []);
           openUrl(s.download_url);
           setBusy('');
         } else if (s.status === 'FAILED') {
@@ -177,6 +187,48 @@ const CertificatesMain = () => {
 
         {status && <p className="text-blue-700 mb-3">{status}</p>}
         {error && <p className="text-red-600 mb-3">⚠ {error}</p>}
+
+        {/* Skipped-rows report (rows that could not be generated) */}
+        {skipped.length > 0 && (
+          <div className="mb-6 border border-amber-300 bg-amber-50 rounded-lg p-4">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-semibold text-amber-800">
+                Pominięto {skipped.length}{' '}
+                {skipped.length === 1 ? 'wiersz' : 'wierszy'} (błędne lub niekompletne dane)
+              </h3>
+              <button
+                onClick={() => setSkipped([])}
+                className="text-amber-700 hover:text-amber-900 text-sm"
+              >
+                Ukryj
+              </button>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-sm">
+                <thead className="text-left text-amber-800">
+                  <tr>
+                    <th className="px-3 py-1">Wiersz</th>
+                    <th className="px-3 py-1">Nr zaświadczenia</th>
+                    <th className="px-3 py-1">Grupa</th>
+                    <th className="px-3 py-1">Powody</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {skipped.map((s) => (
+                    <tr key={s.row} className="border-t border-amber-200">
+                      <td className="px-3 py-1">{s.row}</td>
+                      <td className="px-3 py-1">{s.certificate_no || '—'}</td>
+                      <td className="px-3 py-1">{s.group || '—'}</td>
+                      <td className="px-3 py-1">
+                        {Array.isArray(s.reasons) ? s.reasons.join('; ') : ''}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
 
         {/* Search */}
         {customers.length > 0 && (
