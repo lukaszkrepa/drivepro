@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'aws-amplify/auth';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../AuthContext.jsx';
 
 const AdminHeader = () => {
@@ -44,9 +46,10 @@ const AdminHeader = () => {
                             onClick={handleLogout}
                             title="Wyloguj"
                             aria-label="Wyloguj"
-                            className="px-4 py-2 text-gray-400 hover:text-red-500 rounded-lg transition"
+                            className="flex items-center gap-2 px-4 py-2 text-gray-600 border border-gray-300 hover:text-red-600 hover:border-red-300 rounded-lg transition"
                         >
-                            <i className="fa-solid fa-arrow-right-from-bracket"></i>
+                            <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                            <span className="font-semibold">Wyloguj</span>
                         </button>
                     </div>
                 </div>
