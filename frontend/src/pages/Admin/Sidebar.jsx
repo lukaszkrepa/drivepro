@@ -1,4 +1,24 @@
+import { useNavigate } from 'react-router-dom';
+import { signOut } from 'aws-amplify/auth';
+import { useAuth } from '../../AuthContext.jsx';
+
 const Sidebar = ({ activeTab, onChangeTab }) => {
+    const navigate = useNavigate();
+    const { setUser } = useAuth();
+
+    const handleLogout = async () => {
+        try {
+            // global: true also revokes the refresh token on Cognito.
+            await signOut({ global: true });
+        } catch (err) {
+            console.warn('[Sidebar] Global sign out failed, clearing local session:', err);
+            await signOut().catch(() => {});
+        } finally {
+            setUser(null);
+            navigate('/login');
+        }
+    };
+
     const tabs = [
         { id: 'kursy', label: 'Kursy', icon: 'car-side' },
         { id: 'kadra', label: 'Kadra', icon: 'users-rectangle' },
@@ -28,6 +48,12 @@ const Sidebar = ({ activeTab, onChangeTab }) => {
                         <span>{label}</span>
                     </button>
                 ))}
+                <button
+                    onClick={handleLogout}
+                    className="flex items-center space-x-3 px-5 py-3 mt-6 rounded-lg text-lg font-semibold text-red-600 border border-red-200 hover:bg-red-50 transition"
+                >
+                    <span>Wyloguj</span>
+                </button>
             </nav>
         </aside>
     );
